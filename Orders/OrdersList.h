@@ -13,7 +13,7 @@ private:
     public:
         Node();
         Node(Order* element, Node* prev, Node* next);
-
+        
         Order* getElement();
         Node* getPrev();
         Node* getNext();

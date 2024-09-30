@@ -3,6 +3,7 @@
 Deploy::Deploy(int armyUnits, std::string targetTerritory) {
     this->armyUnits = armyUnits;
     this->targetTerritory = targetTerritory;
+    this->setOrderType("Deploy");
 }
 
 int Deploy::getArmyUnits() {
