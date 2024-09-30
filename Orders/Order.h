@@ -16,4 +16,20 @@ public:
     void setOrderType(std::string orderType);
 };
 
+class Deploy : public Order {
+private:
+    int armyUnits;
+    std::string targetTerritory;
+
+public:
+    Deploy(int armyUnits, std::string targetTerritory);
+
+    int getArmyUnits();
+    std::string getTargetTerritory();
+
+    bool validate();
+    void execute();
+    void summary();
+};
+
 #endif
