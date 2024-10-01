@@ -3,18 +3,19 @@
 #include <vector>
 #include "Territory.h"
 #include "Order.h"
-//#include "Card.h"
+#include "Card.h"
+#include "OrdersList.h"
 
 
 class Player {
 
 private:
-	
+
 	std::vector<Territory>* territories;
 
-	std::vector<Order>* orders;
+	OrdersList* ordersList;
 
-	//std::vector<Cards>* cards;
+	Hand* hand;
 
 public:
 
@@ -26,11 +27,11 @@ public:
 
 	std::vector<Territory>* toAttack();
 
-	Order issueOrder();
+	void issueOrder();
 
 
 
-	
+
 
 
 

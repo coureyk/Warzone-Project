@@ -18,13 +18,13 @@ Player::Player() {
 
 	orders = new std::vector<Order>;
 
-	//cards = new std::vector<Card>;
+	cards = new std::vector<Card>;
 
 }
 
 std::vector<Territory>* Player::toDefend() {
 
-	
+
 
 }
 
@@ -33,13 +33,17 @@ std::vector<Territory>* Player::toAttack() {
 
 }
 
-Order Player::issueOrder() {
+void Player::issueOrder() {
 
 	std::cout << "Which order would you like to issue?";
 
-	Deploy deploy();
-		
-	//return deploy;
+	Deploy* deploy;
+
+	ordersList->addLast(deploy);
+
+
+
+
 
 
 
