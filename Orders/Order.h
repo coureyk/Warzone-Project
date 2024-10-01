@@ -31,6 +31,8 @@ private:
 
 public:
     Deploy(int armyUnits, std::string targetTerritory);
+    Deploy(Deploy& other);
+    Deploy& operator=(const Deploy& other);
 
     int getArmyUnits() const;
     std::string getTargetTerritory() const;
@@ -48,6 +50,8 @@ private:
 
 public:
     Advance(int armyUnits, std::string sourceTerritory, std::string targetTerritory);
+    Advance(Advance& other);
+    Advance& operator=(const Advance& other);
 
     int getArmyUnits() const;
     std::string getSourceTerritory() const;
@@ -64,6 +68,8 @@ private:
 
 public:
     Bomb(std::string targetTerritory);
+    Bomb(Bomb& other);
+    Bomb& operator=(const Bomb& other);
 
     std::string getTargetTerritory() const;
     std::string summary() const;
@@ -78,6 +84,8 @@ private:
 
 public:
     Blockade(std::string targetTerritory);
+    Blockade(Blockade& other);
+    Blockade& operator=(const Blockade& other);
 
     std::string getTargetTerritory() const;
     std::string summary() const;
@@ -94,6 +102,8 @@ private:
 
 public:
     Airlift(int armyUnits, std::string sourceTerritory, std::string targetTerritory);
+    Airlift(Airlift& other);
+    Airlift& operator=(const Airlift& other);
 
     int getArmyUnits() const;
     std::string getSourceTerritory() const;
@@ -111,6 +121,8 @@ private:
 
 public:
     Negotiate(std::string sourcePlayer, std::string targetPlayer);
+    Negotiate(Negotiate& other);
+    Negotiate& operator=(const Negotiate& other);
 
     std::string getSourcePlayer() const;
     std::string getTargetPlayer() const;
