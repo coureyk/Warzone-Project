@@ -3,8 +3,8 @@
 
 OrdersList::Node::Node() {
     this->element = NULL;
-    this->prev = NULL;
-    this->next = NULL;
+    this->element = NULL;
+    this->element = NULL;
 }
 
 OrdersList::Node::Node(Order* element, Node* prev, Node* next) {
