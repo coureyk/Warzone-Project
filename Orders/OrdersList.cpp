@@ -1,6 +1,5 @@
 #include "OrdersList.h"
 
-
 OrdersList::Node::Node() {
     this->element = NULL;
     this->prev = NULL;
@@ -117,7 +116,7 @@ void OrdersList::move(int currentPos, int targetPos) {
 void OrdersList::getContents() {
     OrdersList::Node* currentNode = first();
     for (int i = 0; i < getSize(); i++) {
-        currentNode->getElement()->summary();
+        std::cout << *(currentNode->getElement()) << "\n";
         currentNode = currentNode->getNext();
     }
 }

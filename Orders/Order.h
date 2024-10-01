@@ -7,14 +7,22 @@
 class Order {
 private:
     std::string orderType;
+    bool hasExecuted = false;
+
 public:
     //Default constructor included automatically
     virtual bool validate() = 0;
     virtual void execute() = 0;
-    virtual void summary() = 0;
-    std::string getOrderType();
+    
+    virtual std::string summary() const = 0;
+    std::string getOrderType() const;
+    bool getExecutionStatus() const; //Must be a constant function so it may be invoked by a const Deploy, Advance, ... object
+
     void setOrderType(std::string orderType);
+    void setExecutionStatus(bool hasExecuted);
 };
+
+std::ostream& operator<<(std::ostream& os, const Order& order);
 
 class Deploy : public Order {
 private:
@@ -24,12 +32,12 @@ private:
 public:
     Deploy(int armyUnits, std::string targetTerritory);
 
-    int getArmyUnits();
-    std::string getTargetTerritory();
+    int getArmyUnits() const;
+    std::string getTargetTerritory() const;
+    std::string summary() const;
 
     bool validate();
     void execute();
-    void summary();
 };
 
 class Advance : public Order {
@@ -41,13 +49,13 @@ private:
 public:
     Advance(int armyUnits, std::string sourceTerritory, std::string targetTerritory);
 
-    int getArmyUnits();
-    std::string getSourceTerritory();
-    std::string getTargetTerritory();
+    int getArmyUnits() const;
+    std::string getSourceTerritory() const;
+    std::string getTargetTerritory() const;
+    std::string summary() const;
 
     bool validate();
     void execute();
-    void summary();
 };
 
 class Bomb : public Order {
@@ -57,11 +65,11 @@ private:
 public:
     Bomb(std::string targetTerritory);
 
-    std::string getTargetTerritory();
+    std::string getTargetTerritory() const;
+    std::string summary() const;
 
     bool validate();
     void execute();
-    void summary();
 };
 
 class Blockade : public Order {
@@ -71,11 +79,11 @@ private:
 public:
     Blockade(std::string targetTerritory);
 
-    std::string getTargetTerritory();
+    std::string getTargetTerritory() const;
+    std::string summary() const;
 
     bool validate();
     void execute();
-    void summary();
 };
 
 class Airlift : public Order {
@@ -87,13 +95,13 @@ private:
 public:
     Airlift(int armyUnits, std::string sourceTerritory, std::string targetTerritory);
 
-    int getArmyUnits();
-    std::string getSourceTerritory();
-    std::string getTargetTerritory();
+    int getArmyUnits() const;
+    std::string getSourceTerritory() const;
+    std::string getTargetTerritory() const;
+    std::string summary() const;
 
     bool validate();
     void execute();
-    void summary();
 };
 
 class Negotiate : public Order {
@@ -104,14 +112,12 @@ private:
 public:
     Negotiate(std::string sourcePlayer, std::string targetPlayer);
 
-    std::string getSourcePlayer();
-    std::string getTargetPlayer();
+    std::string getSourcePlayer() const;
+    std::string getTargetPlayer() const;
+    std::string summary() const;
 
     bool validate();
     void execute();
-    void summary();
 };
-
-
 
 #endif
