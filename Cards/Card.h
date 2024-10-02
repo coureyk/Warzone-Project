@@ -8,11 +8,11 @@
 
 // Enum to represent the type of cards available in the game
 enum CardType {
-    Bomb,
-    Reinforcement,
-    Blockade,
-    Airlift,
-    Diplomacy
+    BOMB,
+    REINFORCEMENT,
+    BLOCKADE,
+    AIRLIFT,
+    DIPLOMACY
 };
 
 // Card class representing a single Warzone card
