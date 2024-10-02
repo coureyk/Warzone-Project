@@ -1,59 +1,57 @@
 #include "Cards.h"
 
-// Card class implementation
-Card::Card(CardType type) {
-    this->type = new CardType(type);
+Card::Card(std::string type) {
+    this->type = new std::string(type);
+    this->isAvailable = new bool(true);  // Initially, the card is available
 }
 
 Card::Card(const Card& other) {
-    this->type = new CardType(*other.type);
+    type = new std::string(*other.type);
+    isAvailable = new bool(*other.isAvailable);
 }
 
 Card::~Card() {
     delete type;
+    delete isAvailable;
 }
 
 Card& Card::operator=(const Card& other) {
-    if (this == &other) {
-        return *this;
-    }
-    delete this->type;
-    this->type = new CardType(*other.type);
+    if (this == &other) return *this;
+    delete type;
+    delete isAvailable;
+    type = new std::string(*other.type);
+    isAvailable = new bool(*other.isAvailable);
     return *this;
 }
 
-std::ostream& operator<<(std::ostream& os, const Card& card) {
-    const char* cardNames[] = { "Bomb", "Reinforcement", "Blockade", "Airlift", "Diplomacy" };
-    os << cardNames[*card.type];
-    return os;
+std::string Card::getType() const {
+    return *type;
 }
 
 void Card::play() {
-    std::string order;
-    switch (*type) {
-    case Bomb:
-        order = "Bomb Order Created";
-        break;
-    case Reinforcement:
-        order = "Reinforcement Order Created";
-        break;
-    case Blockade:
-        order = "Blockade Order Created";
-        break;
-    case Airlift:
-        order = "Airlift Order Created";
-        break;
-    case Diplomacy:
-        order = "Diplomacy Order Created";
-        break;
-    }
-    std::cout << order << std::endl;
+    std::cout << "Playing " << *type << " card." << std::endl;
+    *isAvailable = true;  // Mark card as available again
 }
 
-// Deck class implementation
+void Card::markTaken() {
+    *isAvailable = false;  // Mark card as taken
+}
+
+void Card::markAvailable() {
+    *isAvailable = true;
+}
+
+bool Card::isCardAvailable() const {
+    return *isAvailable;
+}
+
 Deck::Deck() {
     cards = new std::vector<Card*>();
-    std::srand(std::time(0));
+    std::string types[] = { "bomb", "reinforcement", "blockade", "airlift", "diplomacy" };
+    for (const std::string& type : types) {
+        cards->push_back(new Card(type));
+    }
+    std::srand(std::time(0));  // Seed random number generator
 }
 
 Deck::Deck(const Deck& other) {
@@ -71,48 +69,43 @@ Deck::~Deck() {
 }
 
 Deck& Deck::operator=(const Deck& other) {
-    if (this == &other) {
-        return *this;
-    }
+    if (this == &other) return *this;
     for (Card* card : *cards) {
         delete card;
     }
     delete cards;
+
     cards = new std::vector<Card*>();
     for (Card* card : *other.cards) {
         cards->push_back(new Card(*card));
     }
     return *this;
 }
-
-std::ostream& operator<<(std::ostream& os, const Deck& deck) {
-    os << "Deck with " << deck.cards->size() << " cards.";
-    return os;
-}
-
-void Deck::addCard(CardType type) {
-    cards->push_back(new Card(type));
+void Deck::showDeck() const {
+    std::cout << "Deck contains the following cards:" << std::endl;
+    for (Card* card : *cards) {
+        std::cout << "- " << card->getType()
+            << " (Status: " << (card->isCardAvailable() ? "Available" : "Taken") << ")"
+            << std::endl;
+    }
 }
 
 Card* Deck::draw() {
-    if (cards->empty()) {
-        throw std::out_of_range("No more cards in the deck.");
+    for (Card* card : *cards) {
+        if (card->isCardAvailable()) {
+            card->markTaken();
+            std::cout << "Drew a " << card->getType() << " card." << std::endl;
+            return card;
+        }
     }
-    int index = std::rand() % cards->size();
-    Card* drawnCard = cards->at(index);
-    cards->erase(cards->begin() + index);
-    return drawnCard;
+    std::cout << "No available cards to draw!" << std::endl;
+    return nullptr;
 }
 
-void Deck::returnCardToDeck(Card* card) {
-    cards->push_back(card);
+void Deck::returnCard(Card* card) {
+    card->markAvailable();
+    std::cout << "Returned " << card->getType() << " card to the deck." << std::endl;
 }
-
-void Deck::showDeck() const {
-    std::cout << "Deck contains " << cards->size() << " cards." << std::endl;
-}
-
-// Hand class implementation
 Hand::Hand() {
     handCards = new std::vector<Card*>();
 }
@@ -120,60 +113,50 @@ Hand::Hand() {
 Hand::Hand(const Hand& other) {
     handCards = new std::vector<Card*>();
     for (Card* card : *other.handCards) {
-        handCards->push_back(new Card(*card));
+        handCards->push_back(card);
     }
 }
 
 Hand::~Hand() {
-    for (Card* card : *handCards) {
-        delete card;
-    }
     delete handCards;
 }
 
 Hand& Hand::operator=(const Hand& other) {
-    if (this == &other) {
-        return *this;
-    }
-    for (Card* card : *handCards) {
-        delete card;
-    }
+    if (this == &other) return *this;
     delete handCards;
     handCards = new std::vector<Card*>();
     for (Card* card : *other.handCards) {
-        handCards->push_back(new Card(*card));
+        handCards->push_back(card);
     }
     return *this;
 }
-
-std::ostream& operator<<(std::ostream& os, const Hand& hand) {
-    os << "Hand with " << hand.handCards->size() << " cards.";
-    return os;
+void Hand::showHand() const {
+    std::cout << "Hand contains the following cards:" << std::endl;
+    if (handCards->empty()) {
+        std::cout << "Hand is empty!" << std::endl;
+    }
+    else {
+        for (Card* card : *handCards) {
+            std::cout << "- " << card->getType() << std::endl;
+        }
+    }
 }
 
 void Hand::addCard(Card* card) {
     handCards->push_back(card);
+    std::cout << "Added " << card->getType() << " card to hand." << std::endl;
 }
 
-Card* Hand::getCard(int index) const {
-    if (index < 0 || index >= handCards->size()) {
-        throw std::out_of_range("Invalid card index.");
+void Hand::playCard(int index) {
+    if (index >= 0 && index < handCards->size()) {
+        Card* card = (*handCards)[index];
+        if (card != nullptr) {
+            card->play();  // Use the Card class's play method
+            handCards->erase(handCards->begin() + index);  // Remove card from hand
+        }
     }
-    return handCards->at(index);
 }
 
-int Hand::getNumberOfCards() const {
+int Hand::getCardCount() const {
     return handCards->size();
-}
-
-void Hand::removeCard(int index) {
-    if (index < 0 || index >= handCards->size()) {
-        throw std::out_of_range("Invalid card index.");
-    }
-    handCards->erase(handCards->begin() + index); // Remove the card without deleting it
-}
-
-
-void Hand::showHand() const {
-    std::cout << "Hand contains " << handCards->size() << " cards." << std::endl;
 }
