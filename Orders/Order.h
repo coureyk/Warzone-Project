@@ -4,38 +4,54 @@
 #include <iostream>
 #include <vector>
 
+//Order is an abstract class which is extended by Deploy, Advance, Bomb, Blockade, Airlift and Negotiate
 class Order {
 private:
-    std::string orderType;
-    bool hasExecuted = false;
+    //Using value initilaization
+    std::string orderType{};
+    bool hasExecuted{};
+    int armyUnits{};
+    std::string sourceTerritory{};
+    std::string targetTerritory{};
+    std::string sourcePlayer{};
+    std::string targetPlayer{};
 
 public:
     //Default constructor included automatically
     virtual bool validate() = 0;
     virtual void execute() = 0;
     
-    virtual std::string summary() const = 0;
+    //These must be constant functions so they may be invoked by a const Deploy, Advance, ... object
+    virtual std::string summary() const = 0; //This function returns a string representation of the Order that invokes it, and is meant to act as a helper function for overloaded operator "<<".
     std::string getOrderType() const;
-    bool getExecutionStatus() const; //Must be a constant function so it may be invoked by a const Deploy, Advance, ... object
+    bool getExecutionStatus() const;
+    int getArmyUnits() const;
+    std::string getSourceTerritory() const;
+    std::string getTargetTerritory() const;
+    std::string getSourcePlayer() const;
+    std::string getTargetPlayer() const;
 
     void setOrderType(std::string orderType);
     void setExecutionStatus(bool hasExecuted);
+    void setArmyUnits(int armyUnits);
+    void setSourceTerritory(std::string sourceTerritory);
+    void setTargetTerritory(std::string targetTerritory);
+    void setSourcePlayer(std::string sourcPlayer);
+    void setTargetPlayer(std::string targetPlayer);
 };
 
+//Overloading the operator "<<" so that std::cout << Order& displays relevant Order information to the user
 std::ostream& operator<<(std::ostream& os, const Order& order);
 
 class Deploy : public Order {
-private:
-    int armyUnits;
-    std::string targetTerritory;
-
 public:
+    //Constructors
     Deploy(int armyUnits, std::string targetTerritory);
     Deploy(Deploy& other);
+
+    //Overloading operator "="
     Deploy& operator=(const Deploy& other);
 
-    int getArmyUnits() const;
-    std::string getTargetTerritory() const;
     std::string summary() const;
 
     bool validate();
@@ -43,19 +59,14 @@ public:
 };
 
 class Advance : public Order {
-private:
-    int armyUnits;
-    std::string sourceTerritory;
-    std::string targetTerritory;
-
 public:
+    //Constructors
     Advance(int armyUnits, std::string sourceTerritory, std::string targetTerritory);
     Advance(Advance& other);
+
+    //Overloading operator "="
     Advance& operator=(const Advance& other);
 
-    int getArmyUnits() const;
-    std::string getSourceTerritory() const;
-    std::string getTargetTerritory() const;
     std::string summary() const;
 
     bool validate();
@@ -63,15 +74,14 @@ public:
 };
 
 class Bomb : public Order {
-private:
-    std::string targetTerritory;
-
 public:
+    //Constructors
     Bomb(std::string targetTerritory);
     Bomb(Bomb& other);
+
+    //Overloading operator "="
     Bomb& operator=(const Bomb& other);
 
-    std::string getTargetTerritory() const;
     std::string summary() const;
 
     bool validate();
@@ -79,15 +89,14 @@ public:
 };
 
 class Blockade : public Order {
-private:
-    std::string targetTerritory;
-
 public:
+    //Constructors
     Blockade(std::string targetTerritory);
     Blockade(Blockade& other);
+
+    //Overloading operator "="
     Blockade& operator=(const Blockade& other);
 
-    std::string getTargetTerritory() const;
     std::string summary() const;
 
     bool validate();
@@ -95,19 +104,14 @@ public:
 };
 
 class Airlift : public Order {
-private:
-    int armyUnits;
-    std::string sourceTerritory;
-    std::string targetTerritory;
-
 public:
+    //Constructors
     Airlift(int armyUnits, std::string sourceTerritory, std::string targetTerritory);
     Airlift(Airlift& other);
+
+    //Overloading operator "="
     Airlift& operator=(const Airlift& other);
 
-    int getArmyUnits() const;
-    std::string getSourceTerritory() const;
-    std::string getTargetTerritory() const;
     std::string summary() const;
 
     bool validate();
@@ -115,17 +119,14 @@ public:
 };
 
 class Negotiate : public Order {
-private:
-    std::string sourcePlayer;
-    std::string targetPlayer;
-
 public:
+    //Constructors
     Negotiate(std::string sourcePlayer, std::string targetPlayer);
     Negotiate(Negotiate& other);
+
+    //Overloading operator "="
     Negotiate& operator=(const Negotiate& other);
 
-    std::string getSourcePlayer() const;
-    std::string getTargetPlayer() const;
     std::string summary() const;
 
     bool validate();

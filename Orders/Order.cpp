@@ -6,6 +6,7 @@ std::ostream& operator<<(std::ostream& os, const Order& order) {
 }
 
 //DEFINING CLASS MEMBERS FOR ORDER
+//GETTERS
 std::string Order::getOrderType() const {
     return this->orderType;
 }
@@ -14,6 +15,27 @@ bool Order::getExecutionStatus() const {
     return this->hasExecuted;
 }
 
+int Order::getArmyUnits() const {
+    return this->armyUnits;
+}
+
+std::string Order::getSourceTerritory() const {
+    return this->sourceTerritory;
+}
+
+std::string Order::getTargetTerritory() const {
+    return this->targetTerritory;
+}
+
+std::string Order::getSourcePlayer() const {
+    return this->sourcePlayer;
+}
+
+std::string Order::getTargetPlayer() const {
+    return this->targetPlayer;
+}
+
+//SETTERS
 void Order::setOrderType(std::string orderType) {
     this->orderType = orderType;
 }
@@ -22,35 +44,49 @@ void Order::setExecutionStatus(bool hasExecuted) {
     this->hasExecuted = hasExecuted;
 }
 
+void Order::setArmyUnits(int armyUnits) {
+    this->armyUnits = armyUnits;
+}
+
+void Order::setSourceTerritory(std::string sourceTerritory) {
+    this->sourceTerritory = sourceTerritory;
+}
+
+void Order::setTargetTerritory(std::string targetTerritory) {
+    this->targetTerritory = targetTerritory;
+}
+
+void Order::setSourcePlayer(std::string sourcPlayer) {
+    this->sourcePlayer = sourcPlayer;
+}
+
+void Order::setTargetPlayer(std::string targetPlayer) {
+    this->targetPlayer = targetPlayer;
+}
+
 //DEFINING CLASS MEMBERS FOR DEPLOY
 Deploy::Deploy(int armyUnits, std::string targetTerritory) {
-    this->armyUnits = armyUnits;
-    this->targetTerritory = targetTerritory;
     this->setOrderType("Deploy");
+    this->setArmyUnits(armyUnits);
+    this->setTargetTerritory(targetTerritory);
 }
 
 Deploy::Deploy(Deploy& other)
 {
-    armyUnits = other.getArmyUnits();
-    targetTerritory = other.getTargetTerritory();
+    this->setExecutionStatus(other.getExecutionStatus());
+    this->setArmyUnits(other.getArmyUnits());
+    this->setTargetTerritory(other.getTargetTerritory());
 }
 
 Deploy& Deploy::operator=(const Deploy& other)
 {
     // Check for self-assignment
     if (this != &other) {
-        armyUnits = other.getArmyUnits();
-        targetTerritory = other.getTargetTerritory();
+        this->setExecutionStatus(other.getExecutionStatus());
+        this->setArmyUnits(other.getArmyUnits());
+        this->setTargetTerritory(other.getTargetTerritory());
     }
     return *this;
-}
-
-int Deploy::getArmyUnits() const {
-    return this->armyUnits;
-}
-
-std::string Deploy::getTargetTerritory() const {
-    return this->targetTerritory;
 }
 
 std::string Deploy::summary() const {
@@ -72,41 +108,31 @@ void Deploy::execute() {
 
 //DEFINING CLASS MEMBERS FOR ADVANCE
 Advance::Advance(int armyUnits, std::string sourceTerritory, std::string targetTerritory) {
-    this->armyUnits = armyUnits;
-    this->sourceTerritory = sourceTerritory;
-    this->targetTerritory = targetTerritory;
     this->setOrderType("Advance");
+    this->setArmyUnits(armyUnits);
+    this->setSourceTerritory(sourceTerritory);
+    this->setTargetTerritory(targetTerritory);
 }
-
 
 Advance::Advance(Advance& other)
 {
-    armyUnits = other.getArmyUnits();
-    sourceTerritory = other.getSourceTerritory();
-    targetTerritory = other.getTargetTerritory();
+    this->setExecutionStatus(other.getExecutionStatus());
+    this->setArmyUnits(other.getArmyUnits());
+    this->setSourceTerritory(other.getSourceTerritory());
+    this->setTargetTerritory(other.getTargetTerritory());
 }
 
 Advance& Advance::operator=(const Advance& other)
 {
     // Check for self-assignment
     if (this != &other) {
-        armyUnits = other.getArmyUnits();
-        sourceTerritory = other.getSourceTerritory();
-        targetTerritory = other.getTargetTerritory();
+
+        this->setExecutionStatus(other.getExecutionStatus());
+        this->setArmyUnits(other.getArmyUnits());
+        this->setSourceTerritory(other.getSourceTerritory());
+        this->setTargetTerritory(other.getTargetTerritory());
     }
     return *this;
-}
-
-int Advance::getArmyUnits() const {
-    return this->armyUnits;
-}
-
-std::string Advance::getSourceTerritory() const {
-    return this->sourceTerritory;
-}
-
-std::string Advance::getTargetTerritory() const {
-    return this->targetTerritory;
 }
 
 std::string Advance::summary() const {
@@ -128,26 +154,25 @@ void Advance::execute() {
 
 //DEFINING CLASS MEMBERS FOR BOMB
 Bomb::Bomb(std::string targetTerritory) {
-    this->targetTerritory = targetTerritory;
     this->setOrderType("Bomb");
+    this->setTargetTerritory(targetTerritory);
 }
 
 Bomb::Bomb(Bomb& other)
 {
-    targetTerritory = other.getTargetTerritory();
+    this->setExecutionStatus(other.getExecutionStatus());
+    this->setTargetTerritory(other.getTargetTerritory());
 }
+
 
 Bomb& Bomb::operator=(const Bomb& other)
 {
     // Check for self-assignment
     if (this != &other) {
-        targetTerritory = other.getTargetTerritory();
+        this->setExecutionStatus(other.getExecutionStatus());
+        this->setTargetTerritory(other.getTargetTerritory());
     }
     return *this;
-}
-
-std::string Bomb::getTargetTerritory() const {
-    return this->targetTerritory;
 }
 
 std::string Bomb::summary() const {
@@ -169,27 +194,24 @@ void Bomb::execute() {
 
 //DEFINING CLASS MEMBERS FOR BLOCKADE
 Blockade::Blockade(std::string targetTerritory) {
-    this->targetTerritory = targetTerritory;
     this->setOrderType("Blockade");
+    this->setTargetTerritory(targetTerritory);
 }
-
 
 Blockade::Blockade(Blockade& other)
 {
-    targetTerritory = other.getTargetTerritory();
+    this->setExecutionStatus(other.getExecutionStatus());
+    this->setTargetTerritory(other.getTargetTerritory());
 }
 
 Blockade& Blockade::operator=(const Blockade& other)
 {
     // Check for self-assignment
     if (this != &other) {
-        targetTerritory = other.getTargetTerritory();
+        this->setExecutionStatus(other.getExecutionStatus());
+        this->setTargetTerritory(other.getTargetTerritory());
     }
     return *this;
-}
-
-std::string Blockade::getTargetTerritory() const {
-    return this->targetTerritory;
 }
 
 std::string Blockade::summary() const {
@@ -209,42 +231,32 @@ void Blockade::execute() {
 
 }
 
+//DEFINING CLASS MEMBERS FOR AIRLIFT
 Airlift::Airlift(int armyUnits, std::string sourceTerritory, std::string targetTerritory) {
-    this->armyUnits = armyUnits;
-    this->sourceTerritory = sourceTerritory;
-    this->targetTerritory = targetTerritory;
     this->setOrderType("Airlift");
+    this->setArmyUnits(armyUnits);
+    this->setSourceTerritory(sourceTerritory);
+    this->setTargetTerritory(targetTerritory);
 }
-
 
 Airlift::Airlift(Airlift& other)
 {
-    armyUnits = other.getArmyUnits();
-    sourceTerritory = other.getSourceTerritory();
-    targetTerritory = other.getTargetTerritory();
+    this->setExecutionStatus(other.getExecutionStatus());
+    this->setArmyUnits(other.getArmyUnits());
+    this->setSourceTerritory(other.getSourceTerritory());
+    this->setTargetTerritory(other.getTargetTerritory());
 }
 
 Airlift& Airlift::operator=(const Airlift& other)
 {
     // Check for self-assignment
     if (this != &other) {
-        armyUnits = other.getArmyUnits();
-        sourceTerritory = other.getSourceTerritory();
-        targetTerritory = other.getTargetTerritory();
+        this->setExecutionStatus(other.getExecutionStatus());
+        this->setArmyUnits(other.getArmyUnits());
+        this->setSourceTerritory(other.getSourceTerritory());
+        this->setTargetTerritory(other.getTargetTerritory());
     }
     return *this;
-}
-
-int Airlift::getArmyUnits() const {
-    return this->armyUnits;
-}
-
-std::string Airlift::getSourceTerritory() const{
-    return this->sourceTerritory;
-}
-
-std::string Airlift::getTargetTerritory() const {
-    return this->targetTerritory;
 }
 
 std::string Airlift::summary() const {
@@ -264,35 +276,29 @@ void Airlift::execute() {
 
 }
 
+//DEFINING CLASS MEMBERS FOR NEGOTIATE
 Negotiate::Negotiate(std::string sourcePlayer, std::string targetPlayer) {
-    this->sourcePlayer = sourcePlayer;
-    this->targetPlayer = targetPlayer;
     this->setOrderType("Negotiate");
+    this->setSourcePlayer(sourcePlayer);
+    this->setTargetPlayer(targetPlayer);
 }
-
 
 Negotiate::Negotiate(Negotiate& other)
 {
-    sourcePlayer = other.getSourcePlayer();
-    targetPlayer = other.getTargetPlayer();
+    this->setExecutionStatus(other.getExecutionStatus());
+    this->setSourcePlayer(other.getSourcePlayer());
+    this->setTargetPlayer(other.getTargetPlayer());
 }
 
 Negotiate& Negotiate::operator=(const Negotiate& other)
 {
     // Check for self-assignment
     if (this != &other) {
-        sourcePlayer = other.getSourcePlayer();
-        targetPlayer = other.getTargetPlayer();
+        this->setExecutionStatus(other.getExecutionStatus());
+        this->setSourcePlayer(other.getSourcePlayer());
+        this->setTargetPlayer(other.getTargetPlayer());
     }
     return *this;
-}
-
-std::string Negotiate::getSourcePlayer() const {
-    return this->sourcePlayer;
-}
-
-std::string Negotiate::getTargetPlayer() const {
-    return this->targetPlayer;
 }
 
 std::string Negotiate::summary() const {
@@ -311,3 +317,5 @@ bool Negotiate::validate() {
 void Negotiate::execute() {
 
 }
+
+//was 313 lines
