@@ -52,33 +52,48 @@ void Player::issueOrder() {
 
 	std::cin >> input;
 
+	
 	switch (input) {
 
 	case 1:
-		Deploy * deploy = new Deploy(0, NULL);
+	{
+		Deploy* deploy = new Deploy(0, NULL);
 		ordersList->addLast(deploy);
-		break;
+	}
+	break;
 	case 2:
-		Advance * advance = new Advance(0,NULL,NULL);
+	{
+		Advance* advance = new Advance(0, NULL, NULL);
 		ordersList->addLast(advance);
-		break;
+	}
+	break;
 	case 3:
+	{
 		Bomb* bomb = new Bomb(0);
 		ordersList->addLast(bomb);
-		break;
-	case 4:
-		Blockade * blockade = new Blockade(NULL);
-		ordersList->addLast(blockade);
-		break;
-	case 5:
-		Airlift * airlift = new Airlift(0,NULL,NULL);
-		ordersList->addLast(airlift);
-		break;
-	case 6:
-		Negotiate * negotiate = new Negotiate(NULL,NULL);
-		ordersList->addLast(negotiate);
-		break;
 	}
+	break;
+	case 4:
+	{
+		Blockade* blockade = new Blockade(NULL);
+		ordersList->addLast(blockade);
+	}
+	break;
+	case 5:
+	{
+		Airlift* airlift = new Airlift(0, NULL, NULL);
+		ordersList->addLast(airlift);
+	}
+	break;
+	case 6:
+	{
+		Negotiate* negotiate = new Negotiate(NULL, NULL);
+		ordersList->addLast(negotiate);
+	}
+	break;
+	}
+	
+	
 
 	
 
