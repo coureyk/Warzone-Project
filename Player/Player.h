@@ -1,5 +1,4 @@
 #pragma once
-
 #include <vector>
 #include "Territory.h"
 #include "Order.h"
@@ -19,6 +18,9 @@ private:
 public:
 
 	Player();
+
+	Player(Player& player);
+
 
 	Player(std::vector<Territory>* territories, OrdersList* ordersList, Hand* hand);
 

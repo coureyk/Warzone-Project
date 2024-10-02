@@ -22,6 +22,8 @@ Player::Player() {
 
 }
 
+
+
 std::vector<Territory>* Player::toDefend() {
 
 	std::vector<Territory>* territories = new std::vector<Territory>();
