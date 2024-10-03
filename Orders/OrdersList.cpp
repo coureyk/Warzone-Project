@@ -91,7 +91,8 @@ void OrdersList::addLast(Order* element) {
 }
 
 Order* OrdersList::remove(Node* node) {
-    if (isEmpty()) {
+    if (isEmpty() || node == NULL) {
+        std::cout << "ERROR. Attempting to remove from empty list or include invalid node.\n\n";
         return NULL;
     }
     Node* predecessor = node->getPrev();
@@ -141,13 +142,13 @@ void OrdersList::move(int currentPos, int targetPos) {
         }
     }
     else if (!currentNodeFound && !targetNodeFound) {
-        std::cout << "Error. Invalid source and target position were provided.\n\n";
+        std::cout << "ERROR. Invalid source and target position were provided.\n\n";
     }
     else if (!currentNodeFound) {
-        std::cout << "Error. Invalid source position was provided.\n\n";
+        std::cout << "ERROR. Invalid source position was provided.\n\n";
     }
     else {
-        std::cout << "Error. Invalid target position was provided.\n\n";
+        std::cout << "ERROR. Invalid target position was provided.\n\n";
     }
 }
 

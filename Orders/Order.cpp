@@ -76,6 +76,7 @@ void Order::setTargetPlayer(std::string targetPlayer) {
 }
 
 //DEFINING CLASS MEMBERS FOR DEPLOY
+//CONSTRUCTORS
 Deploy::Deploy(int armyUnits, std::string targetTerritory) {
     this->setOrderType("Deploy");
     this->setArmyUnits(armyUnits);
@@ -89,6 +90,7 @@ Deploy::Deploy(Deploy& other)
     this->setTargetTerritory(other.getTargetTerritory());
 }
 
+//OVERLOADING OPERATOR=
 Deploy& Deploy::operator=(const Deploy& other)
 {
     // Check for self-assignment
@@ -100,6 +102,7 @@ Deploy& Deploy::operator=(const Deploy& other)
     return *this;
 }
 
+//USER-DEFINED FUNCTIONS
 std::string Deploy::summary() const {
     if (!this->getExecutionStatus()) {
         return "Order Type: " + this->getOrderType() + "\nSummary: Put " + std::to_string(this->getArmyUnits()) + " army units on " + this->getTargetTerritory() + "\n";
@@ -110,11 +113,18 @@ std::string Deploy::summary() const {
 }
 
 bool Deploy::validate() {
+    std::cout << "Validating Deploy order...\n\n";
     return true;
 }
 
 void Deploy::execute() {
-
+    if (validate() == true) {
+        std::cout << "Executing Deploy order.\n\n";
+        this->setExecutionStatus(true);
+    }
+    else {
+        std::cout << "ERROR. Unable to execute Deploy order.\n\n";
+    }
 }
 
 //DEFINING CLASS MEMBERS FOR ADVANCE
@@ -156,11 +166,18 @@ std::string Advance::summary() const {
 }
 
 bool Advance::validate() {
+    std::cout << "Validating Advance order...\n\n";
     return true;
 }
 
 void Advance::execute() {
-
+    if (validate() == true) {
+        std::cout << "Executing Advance order.\n\n";
+        this->setExecutionStatus(true);
+    }
+    else {
+        std::cout << "ERROR. Unable to execute Advance order.\n\n";
+    }
 }
 
 //DEFINING CLASS MEMBERS FOR BOMB
@@ -195,11 +212,18 @@ std::string Bomb::summary() const {
 }
 
 bool Bomb::validate() {
-    return true;
+    std::cout << "Validating Bomb order...\n\n";
+    return true;;
 }
 
 void Bomb::execute() {
-
+    if (validate() == true) {
+        std::cout << "Executing Bomb order.\n\n";
+        this->setExecutionStatus(true);
+    }
+    else {
+        std::cout << "ERROR. Unable to execute Bomb order.\n\n";
+    }
 }
 
 //DEFINING CLASS MEMBERS FOR BLOCKADE
@@ -234,11 +258,18 @@ std::string Blockade::summary() const {
 }
 
 bool Blockade::validate() {
+    std::cout << "Validating Deploy order...\n\n";
     return true;
 }
 
 void Blockade::execute() {
-
+    if (validate() == true) {
+        std::cout << "Executing Blockade order.\n\n";
+        this->setExecutionStatus(true);
+    }
+    else {
+        std::cout << "ERROR. Unable to execute Blockade order.\n\n";
+    }
 }
 
 //DEFINING CLASS MEMBERS FOR AIRLIFT
@@ -279,11 +310,18 @@ std::string Airlift::summary() const {
 }
 
 bool Airlift::validate() {
+    std::cout << "Validating Airlift order...\n\n";
     return true;
 }
 
 void Airlift::execute() {
-
+    if (validate() == true) {
+        std::cout << "Executing Airlift order.\n\n";
+        this->setExecutionStatus(true);
+    }
+    else {
+        std::cout << "ERROR. Unable to execute Airlift order.\n\n";
+    }
 }
 
 //DEFINING CLASS MEMBERS FOR NEGOTIATE
@@ -321,9 +359,16 @@ std::string Negotiate::summary() const {
 }
 
 bool Negotiate::validate() {
+    std::cout << "Validating Negotiate order...\n\n";
     return true;
 }
 
 void Negotiate::execute() {
-
+    if (validate() == true) {
+        std::cout << "Executing Negotiate order.\n\n";
+        this->setExecutionStatus(true);
+    }
+    else {
+        std::cout << "ERROR. Unable to execute Negotiate order.\n\n";
+    }
 }
