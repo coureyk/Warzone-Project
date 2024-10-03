@@ -2,22 +2,23 @@
 #define ORDER_H
 #include <string>
 #include <iostream>
-#include <vector>
 
 //Order is an abstract class which is extended by Deploy, Advance, Bomb, Blockade, Airlift and Negotiate
 class Order {
 private:
     //Using value initilaization
-    std::string orderType{};
-    bool hasExecuted{};
-    int armyUnits{};
-    std::string sourceTerritory{};
-    std::string targetTerritory{};
-    std::string sourcePlayer{};
-    std::string targetPlayer{};
+    std::string orderType;
+    bool hasExecuted;
+    int armyUnits;
+    std::string sourceTerritory;
+    std::string targetTerritory;
+    std::string sourcePlayer;
+    std::string targetPlayer;
 
 public:
-    //Default constructor included automatically
+    //Default Constructor
+    Order();
+
     virtual bool validate() = 0;
     virtual void execute() = 0;
     

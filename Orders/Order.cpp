@@ -6,6 +6,17 @@ std::ostream& operator<<(std::ostream& os, const Order& order) {
 }
 
 //DEFINING CLASS MEMBERS FOR ORDER
+//DEFAULT CONSTRUCTOR
+Order::Order() {
+    orderType = "";
+    hasExecuted = false;
+    armyUnits = 0;
+    sourceTerritory = "";
+    targetTerritory = "";
+    sourcePlayer = "";
+    targetPlayer = "";
+}
+
 //GETTERS
 std::string Order::getOrderType() const {
     return this->orderType;
