@@ -175,7 +175,6 @@ Bomb::Bomb(Bomb& other)
     this->setTargetTerritory(other.getTargetTerritory());
 }
 
-
 Bomb& Bomb::operator=(const Bomb& other)
 {
     // Check for self-assignment
@@ -328,5 +327,3 @@ bool Negotiate::validate() {
 void Negotiate::execute() {
 
 }
-
-//was 313 lines

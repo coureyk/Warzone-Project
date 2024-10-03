@@ -1,13 +1,12 @@
-#include "Order.h"
-#include "OrdersList.h"
+#include "OrdersDriver.h"
 
-static void testOrdersLists() {
+void testOrdersLists() {
     Deploy o1(5, "Turkey");
-    Advance o2(10, "Switzerland", "Germany");
+    Advance o2(10, "Germany", "Russia");
     Bomb o3("Canada");
-    Blockade o4("China");
-    Airlift o5(10, "Mexico", "Wisconsin");
-    Negotiate o6("Ricky", "Liam");
+    Blockade o4("Mexico");
+    Airlift o5(10, "Wisconsin", "Tallahassee");
+    Negotiate o6("Kevin", "Liam");
 
     OrdersList list;
 
@@ -19,6 +18,11 @@ static void testOrdersLists() {
     list.addLast(&o6);
 
     list.move(1, 3);
+    list.move(3, 3);
+    list.move(6, 5);
+    list.move(1, -3);
+
+    list.remove(list.getNode(0));
 
     list.getContents();
 }
