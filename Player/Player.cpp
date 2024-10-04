@@ -2,13 +2,13 @@
 #include <iostream>
 
 
-Player::Player(std::vector<Territory>*territories,OrdersList* ordersList, Hand* hand) {
+Player::Player(const std::vector<Territory>&territories,const OrdersList& ordersList,const Hand& hand) {
 
-	this->territories = territories;
+	this->territories = new std::vector<Territory>(territories);
 
-	this->ordersList = ordersList;
+	this->ordersList = new OrdersList(ordersList);
 
-	this->hand = hand;
+	this->hand = new Hand(hand);
 
 }
 
@@ -22,18 +22,46 @@ Player::Player() {
 
 }
 
+Player::Player(const Player& otherPlayer) {
+	
+	if (otherPlayer.territories != nullptr) {
+		territories = new std::vector<Territory>(*otherPlayer.territories);
+	}
+	else {
+		territories = nullptr;
+	}
+
+	
+	if (otherPlayer.ordersList != nullptr) {
+		ordersList = new OrdersList(*otherPlayer.ordersList);
+	}
+	else {
+		ordersList = nullptr;
+	}
+
+	
+	if (otherPlayer.hand != nullptr) {
+		hand = new Hand(*otherPlayer.hand);
+	}
+	else {
+		hand = nullptr;
+	}
+}
+
 
 
 std::vector<Territory>* Player::toDefend() {
 
-	std::vector<Territory>* territories = new std::vector<Territory>();
+	std::vector<Territory>* territories = new std::vector<Territory>;
+	std::cout << "These territories are to be defended. Whatever that entails";
 	return territories;
 
 }
 
 std::vector<Territory>* Player::toAttack() {
 
-	std::vector<Territory>* territories = new std::vector<Territory>();
+	std::vector<Territory>* territories = new std::vector<Territory>;
+	std::cout << "These territories are to be attacked. Whatever that entails";
 	return territories;
 
 }
@@ -93,11 +121,63 @@ void Player::issueOrder() {
 	break;
 	}
 	
-	
+
+}
+
+Player& Player::operator=(const Player& otherPlayer) {
+
+	if (this == &otherPlayer)
+		return *this;
+
+	if (territories != nullptr)
+		delete territories;
+
+	territories = new std::vector<Territory>(*otherPlayer.territories);
+
+	if (ordersList != nullptr) {
+		delete ordersList;
+	}
+	ordersList = new OrdersList(*otherPlayer.ordersList);
 
 	
+	if (hand != nullptr) {
+		delete hand;
+	}
+	hand = new Hand(*otherPlayer.hand);
+
+	return *this;
 
 
+}
 
+// TODO: When Kevin adds his operator<< implementations I will be able to finish this.
+std::ostream& operator<<(std::ostream& os, const Player& player)
+{
+	os << "Player Territories: ";
+	if (player.territories != nullptr) {
+		for (const Territory& territory : *player.territories) {
+			os << territory << " ";  // Assuming Territory has an overloaded operator<<
+		}
+	}
+	else {
+		os << "None";
+	}
 
+	os << "\nOrders List: ";
+	if (player.ordersList != nullptr) {
+		os << *player.ordersList;  // Assuming OrdersList has an overloaded operator<<
+	}
+	else {
+		os << "None";
+	}
+
+	os << "\nHand: ";
+	if (player.hand != nullptr) {
+		os << *player.hand;  // Assuming Hand has an overloaded operator<<
+	}
+	else {
+		os << "None";
+	}
+
+	return os;
 }

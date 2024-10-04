@@ -5,9 +5,10 @@
 #include "Card.h"
 #include "OrdersList.h"
 
+
 class Player {
 
-private:
+protected:
 
 	std::vector<Territory>* territories;
 
@@ -19,10 +20,9 @@ public:
 
 	Player();
 
-	Player(Player& player);
+	Player(const Player& player);
 
-
-	Player(std::vector<Territory>* territories, OrdersList* ordersList, Hand* hand);
+	Player(const std::vector<Territory>& territories, const OrdersList& ordersList, const Hand& hand);
 
 	std::vector<Territory>* toDefend();
 
@@ -30,5 +30,10 @@ public:
 
 	void issueOrder();
 
+	Player& operator=(const Player& otherPlayer);
 
+	friend std::ostream& operator<<(std::ostream& os, const Player& player);
+	
+	
 };
+
