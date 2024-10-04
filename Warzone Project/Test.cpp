@@ -5,7 +5,7 @@ int main() {
 
 	std::vector<Territory>* territories = new std::vector<Territory>;
 
-	std::string s = "poopoo";
+	std::string s = "";
 
 	Territory* territory1 = new Territory(s);
 
