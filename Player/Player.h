@@ -32,7 +32,7 @@ public:
 
 	Player& operator=(const Player& otherPlayer);
 
-	friend std::ostream& operator<<(std::ostream& os, const Player& player);
+	//friend std::ostream& operator<<(std::ostream& os, const Player& player);
 	
 	
 };
