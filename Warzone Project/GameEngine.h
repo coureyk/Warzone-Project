@@ -10,9 +10,7 @@ class GameEngine
         
         void startup();// Method to start the game
 
-        void play();// method for the main game loop
-
-        bool validateCommandInput(const std::string command);//makes sure the user inputed a valid phrase
+        bool validCommandInput(const std::string command);//makes sure the user inputed a valid phrase
         
         // method to set the state based on the command
         void setState(const std::string command);
@@ -38,7 +36,8 @@ win -> WIN
             ASSIGN_REINFORCEMENTS = 40,
             ISSUE_ORDERS = 50,
             EXECUTE_ORDERS = 60,
-            WIN = 70
+            WIN = 70,
+            FINISHED = 80
         };
        
         // Static variable to hold the current game state
@@ -48,4 +47,4 @@ win -> WIN
 /*Free function named testGameStates() that allows the user to type command strings on the console, whose result is
 to trigger some state transitions as depicted in the state transition diagram presented below. Any command string
 entered that does not correspond to an outgoing edge of the current state should be rejected.*/
-void testGameStates() {};
+void testGameStates();
