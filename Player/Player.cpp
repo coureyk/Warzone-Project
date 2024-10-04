@@ -48,6 +48,12 @@ Player::Player(const Player& otherPlayer) {
 	}
 }
 
+Player::~Player() {
+	delete territories;
+	delete ordersList;
+	delete hand;
+}
+
 
 
 std::vector<Territory>* Player::toDefend() {
@@ -74,7 +80,7 @@ void Player::issueOrder() {
 \nEnter 3 for Bomb
 \nEnter 4 for Blockade
 \nEnter 5 for Airlift
-\nEnter 6 for Negotiate\n)HERE";
+\nEnter 6 for Negotiate\n)HERE" << std::endl;
 
 	int input = 0;
 
@@ -85,38 +91,44 @@ void Player::issueOrder() {
 
 	case 1:
 	{
-		Deploy* deploy = new Deploy(0, NULL);
+		Deploy* deploy = new Deploy(0, "");
 		ordersList->addLast(deploy);
+		std::cout << "Deploy added";
 	}
 	break;
 	case 2:
 	{
-		Advance* advance = new Advance(0, NULL, NULL);
+		Advance* advance = new Advance(0, "", "");
 		ordersList->addLast(advance);
+		std::cout << "Advance added";
 	}
 	break;
 	case 3:
 	{
 		Bomb* bomb = new Bomb(0);
 		ordersList->addLast(bomb);
+		std::cout << "Bomb added";
 	}
 	break;
 	case 4:
 	{
-		Blockade* blockade = new Blockade(NULL);
+		Blockade* blockade = new Blockade("");
 		ordersList->addLast(blockade);
+		std::cout << "Blockade added";
 	}
 	break;
 	case 5:
 	{
-		Airlift* airlift = new Airlift(0, NULL, NULL);
+		Airlift* airlift = new Airlift(0, "", "");
 		ordersList->addLast(airlift);
+		std::cout << "Airlift added";
 	}
 	break;
 	case 6:
 	{
-		Negotiate* negotiate = new Negotiate(NULL, NULL);
+		Negotiate* negotiate = new Negotiate("", "");
 		ordersList->addLast(negotiate);
+		std::cout << "Negotiate added";
 	}
 	break;
 	default:
@@ -150,6 +162,13 @@ Player& Player::operator=(const Player& otherPlayer) {
 	return *this;
 
 
+}
+
+
+//FOR NOW
+
+void Player::toString() {
+	
 }
 
 // TODO: When Kevin adds his operator<< implementations I will be able to finish this.

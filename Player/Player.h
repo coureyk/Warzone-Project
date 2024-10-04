@@ -20,6 +20,8 @@ public:
 
 	Player();
 
+	~Player();
+
 	Player(const Player& player);
 
 	Player(const std::vector<Territory>& territories, const OrdersList& ordersList, const Hand& hand);
@@ -31,6 +33,10 @@ public:
 	void issueOrder();
 
 	Player& operator=(const Player& otherPlayer);
+
+
+	//FOR NOW
+	void toString();
 
 	//friend std::ostream& operator<<(std::ostream& os, const Player& player);
 	
