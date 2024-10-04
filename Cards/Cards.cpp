@@ -1,12 +1,12 @@
 #include "Cards.h"
 
-Card::Card(std::string type) {
-    this->type = new std::string(type);
+Card::Card(CardType type) {
+    this->type = new CardType(type);
     this->isAvailable = new bool(true);  // Initially, the card is available
 }
 
 Card::Card(const Card& other) {
-    type = new std::string(*other.type);
+    type = new CardType(*other.type);
     isAvailable = new bool(*other.isAvailable);
 }
 
@@ -19,46 +19,51 @@ Card& Card::operator=(const Card& other) {
     if (this == &other) return *this;
     delete type;
     delete isAvailable;
-    type = new std::string(*other.type);
+    type = new CardType(*other.type);
     isAvailable = new bool(*other.isAvailable);
     return *this;
 }
 
+// Convert the enum to a string for display
 std::string Card::getType() const {
-    return *type;
+    switch (*type) {
+    case CardType::Bomb: return "Bomb";
+    case CardType::Reinforcement: return "Reinforcement";
+    case CardType::Blockade: return "Blockade";
+    case CardType::Airlift: return "Airlift";
+    case CardType::Diplomacy: return "Diplomacy";
+    default: return "Unknown";
+    }
 }
 
 void Card::play() {
-    std::cout << "Playing " << *type << " card." << std::endl;
+    std::cout << "Playing " << getType() << " card." << std::endl;
     *isAvailable = true;  // Mark card as available again
 }
 
 void Card::markTaken() {
     *isAvailable = false;  // Mark card as taken
 }
-
 void Card::markAvailable() {
-    *isAvailable = true;
+    *isAvailable = true;  // Mark card as available
 }
-
 bool Card::isCardAvailable() const {
-    return *isAvailable;
+    return *isAvailable;  // Check if the card is available
 }
 
+// Constructor: Initialize the deck with cards of all types
 Deck::Deck() {
     cards = new std::vector<Card*>();
-    std::string types[] = { "bomb", "reinforcement", "blockade", "airlift", "diplomacy" };
-    for (const std::string& type : types) {
-        cards->push_back(new Card(type));
-    }
-    std::srand(std::time(0));  // Seed random number generator
-}
 
-Deck::Deck(const Deck& other) {
-    cards = new std::vector<Card*>();
-    for (Card* card : *other.cards) {
-        cards->push_back(new Card(*card));
+    for (int i = 0; i < 2; ++i) {
+        cards->push_back(new Card(CardType::Bomb));
+        cards->push_back(new Card(CardType::Reinforcement));
+        cards->push_back(new Card(CardType::Blockade));
+        cards->push_back(new Card(CardType::Airlift));
+        cards->push_back(new Card(CardType::Diplomacy));
     }
+
+    std::srand(std::time(0));  // Seed random number generator
 }
 
 Deck::~Deck() {
@@ -68,19 +73,41 @@ Deck::~Deck() {
     delete cards;
 }
 
-Deck& Deck::operator=(const Deck& other) {
-    if (this == &other) return *this;
-    for (Card* card : *cards) {
-        delete card;
-    }
-    delete cards;
+Card* Deck::draw() {
+    // Create a vector to store all available cards
+    std::vector<Card*> availableCards;
 
-    cards = new std::vector<Card*>();
-    for (Card* card : *other.cards) {
-        cards->push_back(new Card(*card));
+    // Loop through the deck and gather all available cards
+    for (Card* card : *cards) {
+        if (card->isCardAvailable()) {
+            availableCards.push_back(card);
+        }
     }
-    return *this;
+
+    // Check if there is any available cards
+    if (availableCards.empty()) {
+        std::cout << "No available cards to draw!" << std::endl;
+        return nullptr;
+    }
+
+    // Randomly pick an available card
+    int randomIndex = std::rand() % availableCards.size();
+    Card* chosenCard = availableCards[randomIndex];
+
+    // Mark the chosen card as taken
+    chosenCard->markTaken();
+    std::cout << "Drew a " << chosenCard->getType() << " card." << std::endl;
+
+    return chosenCard;
 }
+
+
+
+void Deck::returnCard(Card* card) {
+    card->markAvailable();
+    std::cout << "Returned " << card->getType() << " card to the deck." << std::endl;
+}
+
 void Deck::showDeck() const {
     std::cout << "Deck contains the following cards:" << std::endl;
     for (Card* card : *cards) {
@@ -89,57 +116,13 @@ void Deck::showDeck() const {
             << std::endl;
     }
 }
-
-Card* Deck::draw() {
-    for (Card* card : *cards) {
-        if (card->isCardAvailable()) {
-            card->markTaken();
-            std::cout << "Drew a " << card->getType() << " card." << std::endl;
-            return card;
-        }
-    }
-    std::cout << "No available cards to draw!" << std::endl;
-    return nullptr;
-}
-
-void Deck::returnCard(Card* card) {
-    card->markAvailable();
-    std::cout << "Returned " << card->getType() << " card to the deck." << std::endl;
-}
+// Constructor: Initialize the hands and create a vector to store all cards drawing from Deck
 Hand::Hand() {
     handCards = new std::vector<Card*>();
 }
 
-Hand::Hand(const Hand& other) {
-    handCards = new std::vector<Card*>();
-    for (Card* card : *other.handCards) {
-        handCards->push_back(card);
-    }
-}
-
 Hand::~Hand() {
     delete handCards;
-}
-
-Hand& Hand::operator=(const Hand& other) {
-    if (this == &other) return *this;
-    delete handCards;
-    handCards = new std::vector<Card*>();
-    for (Card* card : *other.handCards) {
-        handCards->push_back(card);
-    }
-    return *this;
-}
-void Hand::showHand() const {
-    std::cout << "Hand contains the following cards:" << std::endl;
-    if (handCards->empty()) {
-        std::cout << "Hand is empty!" << std::endl;
-    }
-    else {
-        for (Card* card : *handCards) {
-            std::cout << "- " << card->getType() << std::endl;
-        }
-    }
 }
 
 void Hand::addCard(Card* card) {
@@ -157,6 +140,18 @@ void Hand::playCard(int index) {
     }
 }
 
+void Hand::showHand() const {
+    std::cout << "Hand contains the following cards:" << std::endl;
+    if (handCards->empty()) {
+        std::cout << "Hand is empty!" << std::endl;
+    }
+    else {
+        for (Card* card : *handCards) {
+            std::cout << "- " << card->getType() << std::endl;
+        }
+    }
+
+}
 int Hand::getCardCount() const {
     return handCards->size();
 }
