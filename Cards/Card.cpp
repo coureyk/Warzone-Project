@@ -31,19 +31,19 @@ std::ostream& operator<<(std::ostream& os, const Card& card) {
 void Card::play() {
     std::string order;
     switch (*type) {
-    case Bomb:
+    case BOMB:
         order = "Bomb Order Created";
         break;
-    case Reinforcement:
+    case REINFORCEMENT:
         order = "Reinforcement Order Created";
         break;
-    case Blockade:
+    case BLOCKADE:
         order = "Blockade Order Created";
         break;
-    case Airlift:
+    case AIRLIFT:
         order = "Airlift Order Created";
         break;
-    case Diplomacy:
+    case DIPLOMACY:
         order = "Diplomacy Order Created";
         break;
     }
