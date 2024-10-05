@@ -133,17 +133,8 @@
     <ClCompile Include="Test.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Cards\Cards.vcxproj">
-      <Project>{54320720-48ae-45e0-b590-a388362c7e5e}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\GameEngine\GameEngine.vcxproj">
-      <Project>{d56d2bc6-f3aa-4ad4-92e1-62f8f982bca3}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\Orders\Orders.vcxproj">
       <Project>{4177c628-d3a8-45f6-9f41-c4ddf51b262c}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\Player\Player.vcxproj">
-      <Project>{8306cafa-a6d9-49b8-a895-e2b5c1f1f0f9}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
