@@ -27,11 +27,11 @@ Card& Card::operator=(const Card& other) {
 // Convert the enum to a string for display
 std::string Card::getType() const {
     switch (*type) {
-    case CardType::Bomb: return "Bomb";
-    case CardType::Reinforcement: return "Reinforcement";
-    case CardType::Blockade: return "Blockade";
-    case CardType::Airlift: return "Airlift";
-    case CardType::Diplomacy: return "Diplomacy";
+    case CardType::BOMB: return "Bomb";
+    case CardType::REINFORCEMENT: return "Reinforcement";
+    case CardType::BLOCKADE: return "Blockade";
+    case CardType::AIRLIFT: return "Airlift";
+    case CardType::DIPLOMACY: return "Diplomacy";
     default: return "Unknown";
     }
 }
@@ -56,11 +56,11 @@ Deck::Deck() {
     cards = new std::vector<Card*>();
 
     for (int i = 0; i < 2; ++i) {
-        cards->push_back(new Card(CardType::Bomb));
-        cards->push_back(new Card(CardType::Reinforcement));
-        cards->push_back(new Card(CardType::Blockade));
-        cards->push_back(new Card(CardType::Airlift));
-        cards->push_back(new Card(CardType::Diplomacy));
+        cards->push_back(new Card(CardType::BOMB));
+        cards->push_back(new Card(CardType::REINFORCEMENT));
+        cards->push_back(new Card(CardType::BLOCKADE));
+        cards->push_back(new Card(CardType::AIRLIFT));
+        cards->push_back(new Card(CardType::DIPLOMACY));
     }
 
     std::srand(std::time(0));  // Seed random number generator
@@ -120,11 +120,36 @@ void Deck::showDeck() const {
 Hand::Hand() {
     handCards = new std::vector<Card*>();
 }
-
-Hand::~Hand() {
-    delete handCards;
+// Copy constructor: deep copies the hand
+Hand::Hand(const Hand& other) {
+    handCards = new std::vector<Card*>();
+    for (Card* card : *other.handCards) {
+        handCards->push_back(new Card(*card));  // Deep copy each card
+    }
 }
 
+Hand::~Hand() {
+    for (Card* card : *handCards) {
+        delete card;
+    }
+    delete handCards;
+}
+Hand& Hand::operator=(const Hand& other) {
+    if (this != &other) {  // Self-assignment check
+        // Clean up current resources
+        for (Card* card : *handCards) {
+            delete card;  // Delete the cards currently held
+        }
+        delete handCards;
+
+        // Deep copy the new resources
+        handCards = new std::vector<Card*>();
+        for (Card* card : *other.handCards) {
+            handCards->push_back(new Card(*card));  // Deep copy each card
+        }
+    }
+    return *this;
+}
 void Hand::addCard(Card* card) {
     handCards->push_back(card);
     std::cout << "Added " << card->getType() << " card to hand." << std::endl;

@@ -193,12 +193,12 @@ std::ostream& operator<<(std::ostream& os, const Player& player)
 	}
 
 	os << "\nHand: ";
-	if (player.hand != nullptr) {
+	/*if (player.hand != nullptr) {
 		os << *player.hand;  // Assuming Hand has an overloaded operator<<
 	}
 	else {
 		os << "None";
-	}
+	}*/
 
 	return os;
 }
@@ -212,7 +212,7 @@ void testPlayers() {
 
 	territories->push_back(*territory1);
 
-	Card* card1 = new Card(Bomb);
+	Card* card1 = new Card(BOMB);
 
 	Hand* hand1 = new Hand;
 

@@ -9,11 +9,11 @@
 
 //Define all card type
 enum CardType {
-    Bomb,
-    Reinforcement,
-    Blockade,
-    Airlift,
-    Diplomacy
+    BOMB,
+    REINFORCEMENT,
+    BLOCKADE,
+    AIRLIFT,
+    DIPLOMACY
 };
 
 class Card {
