@@ -129,12 +129,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Player.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Player.cpp" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Cards\Cards.vcxproj">
       <Project>{654972cc-dc7b-4be8-8789-1e21f6132b34}</Project>
     </ProjectReference>
@@ -144,6 +138,12 @@
     <ProjectReference Include="..\Orders\Orders.vcxproj">
       <Project>{4177c628-d3a8-45f6-9f41-c4ddf51b262c}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Player.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Player.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

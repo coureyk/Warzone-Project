@@ -21,7 +21,7 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{772a186c-9a34-4bb6-aee7-f545213c7274}</ProjectGuid>
+    <ProjectGuid>{9a8db31f-67d8-4a8b-baea-71fbe73b0d5b}</ProjectGuid>
     <RootNamespace>WarzoneProject</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
@@ -119,7 +119,6 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Player;$(SolutionDir)Player;$(SolutionDir)Map;$(SolutionDir)Cards</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -128,10 +127,6 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="OrdersDriver.cpp" />
-    <ClCompile Include="Test.cpp" />
-  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Cards\Cards.vcxproj">
       <Project>{654972cc-dc7b-4be8-8789-1e21f6132b34}</Project>
@@ -148,6 +143,9 @@
     <ProjectReference Include="..\Players\Players.vcxproj">
       <Project>{0b6edb27-3929-44d3-8cfd-b77e45b71915}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Driver.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
