@@ -1,10 +1,8 @@
 #pragma once
 #include <vector>
 #include "Map.h"
-#include "Order.h"
-#include "Card.h"
 #include "OrdersList.h"
-
+#include "Cards.h"
 
 class Player {
 
@@ -42,4 +40,6 @@ public:
 	
 	
 };
+
+void testPlayers();
 

@@ -1,7 +1,6 @@
 ﻿#include "Player.h"
 #include <iostream>
 
-
 Player::Player(const std::vector<Territory>&territories,const OrdersList& ordersList,const Hand& hand) {
 
 	this->territories = new std::vector<Territory>(territories);
@@ -201,4 +200,30 @@ std::ostream& operator<<(std::ostream& os, const Player& player)
 	}
 
 	return os;
+}
+
+void testPlayers() {
+	std::vector<Territory>* territories = new std::vector<Territory>;
+
+	Continent* continent1 = new Continent("America");
+
+	Territory* territory1 = new Territory("Montreal", continent1, "Liam", 10);
+
+	territories->push_back(*territory1);
+
+	Card* card1 = new Card(BOMB);
+
+	Hand* hand1 = new Hand;
+
+	hand1->addCard(card1);
+
+	OrdersList* list = new OrdersList;
+
+	Deploy* order1 = new Deploy(1, std::string("Alaska"));
+
+	list->addLast(order1);
+
+	Player* player1 = new Player(*territories, *list, *hand1);
+
+	player1->issueOrder();
 }

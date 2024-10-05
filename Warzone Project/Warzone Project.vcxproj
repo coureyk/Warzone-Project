@@ -104,7 +104,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Orders;$(SolutionDir)Player;$(SolutionDir)Map;$(SolutionDir)Cards</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Cards;$(SolutionDir)GameEngine;$(SolutionDir)Map;$(SolutionDir)Orders;$(SolutionDir)Player</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
