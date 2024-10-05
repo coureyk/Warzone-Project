@@ -2,19 +2,24 @@
 
 //CONSTRUCTORS
 Territory::Territory() {
+    this->name = "";
+    this->neighbors = std::vector<Territory>(); //initializing neighbors as empty vector
     armies = 0;
+    this->isVisited = false;
 }
 
 Territory::Territory(std::string name) {
     this->name = name;
     this->neighbors = std::vector<Territory>(); //initializing neighbors as empty vector
     this->armies = 0;
+    this->isVisited = false;
 }
 
 Territory::Territory(const Territory& other) {
     this->name = other.getName();
     this->neighbors = other.getNeighbors(); //shallow copy. To be corrected in A2.
     this->armies = other.getArmies();
+    this->isVisited = other.getVisitedStatus();
 }
 
 //OVERLOADING OPERATOR=
@@ -24,6 +29,7 @@ Territory& Territory::operator=(const Territory& other) {
         this->name = other.getName();
         this->neighbors = other.getNeighbors();
         this->armies = other.getArmies();
+        this->isVisited = other.getVisitedStatus();
     }
     return *this;
 }
@@ -39,6 +45,10 @@ std::vector<Territory> Territory::getNeighbors() const {
 
 int Territory::getArmies() const {
     return this->armies;
+}
+
+bool Territory::getVisitedStatus() const {
+    return this->isVisited;
 }
 
 std::string Territory::summary() const {
@@ -59,6 +69,10 @@ void Territory::setNeighbors(std::vector<Territory> neighbors) {
 
 void Territory::setArmies(int armies) {
     this->armies = armies;
+}
+
+void Territory::setVisitedStatus(bool visitedStatus) {
+    this->isVisited = visitedStatus;
 }
 
 //OVERLOADING OPERATOR<<

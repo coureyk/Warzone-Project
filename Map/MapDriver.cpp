@@ -2,6 +2,8 @@
 #include <iostream>
 
 void testLoadMaps() {
+    Map* map = new Map();
+    
     Territory* t1 = new Territory("Siam");
     Territory* t2 = new Territory("Japan");
     Territory* t3 = new Territory("Ural");
@@ -38,28 +40,42 @@ void testLoadMaps() {
 
     std::vector<Continent> v4 = { *c1,*c2, *c3 };
 
-    Map::setContinents(v4);
+    map->setContinents(v4);
 
-    for (int i = 0; i < Map::getContinents().size(); i++) {
-        std::cout << "Continent: " << Map::getContinents().at(i).getName() << "\n";
+    for (int i = 0; i < map->getContinents().size(); i++) {
+        std::cout << "Continent: " << map->getContinents().at(i).getName() << "\n";
         std::cout << "Members: ";
-        for (int j = 0; j < Map::getContinents().at(i).getTerritories().size(); j++) {
-            std::cout << Map::getContinents().at(i).getTerritories().at(j).getName() << ", ";
+        for (int j = 0; j < map->getContinents().at(i).getTerritories().size(); j++) {
+            std::cout << map->getContinents().at(i).getTerritories().at(j).getName() << ", ";
         }
         std::cout << "\n";
     }
     std::cout << "\n\n";
 
-    for (int i = 0; i < Map::getContinents().size(); i++) {
-        std::cout << "Continent: " << Map::getContinents().at(i).getName() << "\n";
-        for (int j = 0; j < Map::getContinents().at(i).getTerritories().size(); j++) {
-            std::cout << "Territory: " << Map::getContinents().at(i).getTerritories().at(j).getName() << "\n";
+    for (int i = 0; i < map->getContinents().size(); i++) {
+        std::cout << "Continent: " << map->getContinents().at(i).getName() << "\n";
+        for (int j = 0; j < map->getContinents().at(i).getTerritories().size(); j++) {
+            std::cout << "Territory: " << map->getContinents().at(i).getTerritories().at(j).getName() << "\n";
             std::cout << "Neighbors: ";
-            for (int k = 0; k < Map::getContinents().at(i).getTerritories().at(j).getNeighbors().size(); k++) {
-                std::cout << Map::getContinents().at(i).getTerritories().at(j).getNeighbors().at(k).getName() << ", ";
+            for (int k = 0; k < map->getContinents().at(i).getTerritories().at(j).getNeighbors().size(); k++) {
+                std::cout << map->getContinents().at(i).getTerritories().at(j).getNeighbors().at(k).getName() << ", ";
             }
             std::cout << "\n";
         }
         std::cout << "\n";
     }
+}
+
+void testLoadMaps2() {
+    MapLoader loader("USA.map");
+    Map* map = loader.loadMap();
+
+    if (map->validate()) {
+        std::cout << "Map is valid!" << std::endl;
+    }
+    else {
+        std::cout << "Map is invalid!" << std::endl;
+    }
+
+    delete map;
 }

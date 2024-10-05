@@ -24,6 +24,9 @@
     <ClInclude Include="Continent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="MapDriver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Territory.cpp">
@@ -38,5 +41,8 @@
     <ClCompile Include="Continent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="USA.map" />
   </ItemGroup>
 </Project>

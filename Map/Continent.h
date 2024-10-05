@@ -1,7 +1,6 @@
 #ifndef CONTINENT_H
 #define CONTINENT_H
 #include "Territory.h"
-#include <iostream>
 
 class Continent {
 private:
@@ -22,6 +21,7 @@ public:
     std::string summary() const;
     void setName(std::string name);
     void setTerritories(std::vector<Territory>);
+    void addTerritory(const Territory& territory);
 };
 
 //Overloading operator<<

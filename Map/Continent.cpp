@@ -50,6 +50,10 @@ void Continent::setTerritories(std::vector<Territory> contents) {
     this->territories = contents;
 }
 
+void Continent::addTerritory(const Territory& territory) {
+    this->territories.push_back(territory);
+}
+
 //OVERLOADING OPERATOR<<
 std::ostream& operator<<(std::ostream& os, const Continent& continent) {
     os << continent.summary();

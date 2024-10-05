@@ -9,6 +9,7 @@ private:
     std::string name;
     std::vector<Territory> neighbors;
     int armies;
+    bool isVisited;
 
 public:
     //Constructors
@@ -23,10 +24,12 @@ public:
     std::string getName() const;
     std::vector<Territory> getNeighbors() const;
     int getArmies() const;
+    bool getVisitedStatus() const;
     std::string summary() const;
     void setName(std::string name);
     void setNeighbors(std::vector<Territory> neighbors);
     void setArmies(int armies);
+    void setVisitedStatus(bool visitedStatus);
 };
 
 //Overloading operator<<
