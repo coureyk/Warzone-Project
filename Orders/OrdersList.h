@@ -35,15 +35,18 @@ public:
     //Default Constructor
     OrdersList();
 
-    int getSize();
-    bool isEmpty();
-    Node* first();
-    Node* last();
-    Node* getNode(int i);
+    int getSize() const;
+    bool isEmpty() const;
+    Node* first() const;
+    Node* last() const;
+    Node* getNode(int i) const;
     void addLast(Order* element);
     Order* remove(Node* node);
     void move(int currentPos, int targetPos);
-    void getContents();
+    void getContents() const;
 };
 
 #endif
+
+//Overloading the operator "<<" so that std::cout << Order& displays relevant Order information to the user
+std::ostream& operator<<(std::ostream& os, const OrdersList& ordersList);

@@ -51,29 +51,29 @@ void OrdersList::addBetween(Order* element, Node* predecessor, Node* successor) 
     size++;
 }
 
-int OrdersList::getSize() {
+int OrdersList::getSize() const {
     return size;
 }
 
-bool OrdersList::isEmpty() {
+bool OrdersList::isEmpty() const {
     return OrdersList::getSize() == 0;
 }
 
-OrdersList::Node* OrdersList::first() {
+OrdersList::Node* OrdersList::first() const {
     if (isEmpty()) {
         return NULL;
     }
     return header->getNext();
 }
 
-OrdersList::Node* OrdersList::last() {
+OrdersList::Node* OrdersList::last() const {
     if (isEmpty()) {
         return NULL;
     }
     return trailer->getPrev();
 }
 
-OrdersList::Node* OrdersList::getNode(int nodeIndex) {
+OrdersList::Node* OrdersList::getNode(int nodeIndex) const {
     Node* currentNode = header->getNext();
     for (int i = 0; i < getSize(); i++) {
         if (i == nodeIndex) {
@@ -152,10 +152,16 @@ void OrdersList::move(int currentPos, int targetPos) {
     }
 }
 
-void OrdersList::getContents() {
+void OrdersList::getContents() const {
     OrdersList::Node* currentNode = first();
     for (int i = 0; i < getSize(); i++) {
         std::cout << *(currentNode->getElement()) << "\n";
         currentNode = currentNode->getNext();
     }
+}
+
+//Overloading the operator "<<" so that std::cout << Order& displays relevant Order information to the user
+std::ostream& operator<<(std::ostream& os, const OrdersList& ordersList) {
+    ordersList.getContents();
+    return os;
 }
