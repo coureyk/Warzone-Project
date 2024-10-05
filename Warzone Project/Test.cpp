@@ -9,30 +9,35 @@
 
 #include "MapDriver.h"
 void waitForEnter() {
-    std::cout << "Press Enter to continue...";
+    std::cout << "Press Enter to continue..." << std::endl;
     std::cin.ignore();  // Ignores any leftover input (like a previous newline)
     std::cin.get();     // Waits for the user to press Enter
 }
 int main() {
-    //File reading causes error
-    std::cout << "\n\n\ntestLoadMaps() is invoked\n\n\n";
+
+    std::cout << "testLoadMaps() is invoked" << std::endl;
     waitForEnter();
     testLoadMaps();
+    std::cout << "testLoadMaps() is finished" << std::endl;
 
-    std::cout << "\n\n\ntestPlayers() is invoked\n\n\n";
+    std::cout << "testPlayers() is invoked" << std::endl;
     waitForEnter();
     testPlayers();
+    std::cout << "testPlayers() is finished" << std::endl;
 
-
-    std::cout << "\n\n\ntestOrdersLists() is invoked\n\n\n";
+    std::cout << "testOrdersLists() is invoked" << std::endl;
     waitForEnter();
     testOrdersLists();
+    std::cout << "testOrdersLists() is finished" << std::endl;
 
-    std::cout << "testCards() is invoked\n\n\n";
+    std::cout << "testCards() is invoked" << std::endl;
     waitForEnter();
     testCards();
+    std::cout << "testCards() is finished" << std::endl;
 
-    std::cout << "\n\n\ntestGameStates() is invoked\n\n\n";
+    std::cout << "testGameStates() is invoked" << std::endl;
     waitForEnter();
     testGameStates();
+    std::cout << "testGameStates() is finished" << std::endl;
+
 }
