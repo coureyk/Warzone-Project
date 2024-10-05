@@ -1,8 +1,8 @@
 
-#include "GameEngine.h"
+#include "Cards.h"
+#include "CardsDriver.cpp"
+
 
 int main() {
-	testGameStates();
-
-	return 0;
+    testCards();
 }

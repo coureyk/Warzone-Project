@@ -104,7 +104,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)GameEngine</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Cards</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -132,8 +132,8 @@
     <ClCompile Include="Test.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GameEngine\GameEngine.vcxproj">
-      <Project>{34bd8c1d-1f8a-4595-8864-101cfc4f8967}</Project>
+    <ProjectReference Include="..\Cards\Cards.vcxproj">
+      <Project>{1f50acb5-c40d-4e47-a6fd-28c32f105728}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

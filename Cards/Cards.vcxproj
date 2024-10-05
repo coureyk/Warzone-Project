@@ -19,9 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <VCProjectVersion>16.0</VCProjectVersion>
+    <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{394df4af-c038-4488-bd25-51e068122b1e}</ProjectGuid>
+    <ProjectGuid>{1f50acb5-c40d-4e47-a6fd-28c32f105728}</ProjectGuid>
     <RootNamespace>Cards</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
@@ -127,10 +127,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Card.h" />
+    <ClInclude Include="Cards.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Card.cpp" />
+    <ClCompile Include="Cards.cpp" />
+    <ClCompile Include="CardsDriver.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
