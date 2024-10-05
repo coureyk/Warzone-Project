@@ -283,3 +283,4 @@ std::ostream& operator<<(std::ostream& os, const MapLoader& mapLoader) {
     os << "MapLoader loading file: " << mapLoader.filePath;
     return os;
 }
+
