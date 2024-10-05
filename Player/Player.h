@@ -1,6 +1,6 @@
 #pragma once
 #include <vector>
-#include "Territory.h"
+#include "Map.h"
 #include "Order.h"
 #include "Card.h"
 #include "OrdersList.h"
@@ -38,7 +38,7 @@ public:
 	//FOR NOW
 	void toString();
 
-	//friend std::ostream& operator<<(std::ostream& os, const Player& player);
+	friend std::ostream& operator<<(std::ostream& os, const Player& player);
 	
 	
 };

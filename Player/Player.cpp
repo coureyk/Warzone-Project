@@ -172,33 +172,33 @@ void Player::toString() {
 }
 
 // TODO: When Kevin adds his operator<< implementations I will be able to finish this.
-//std::ostream& operator<<(std::ostream& os, const Player& player)
-//{
-//	os << "Player Territories: ";
-//	if (player.territories != nullptr) {
-//		for (const Territory& territory : *player.territories) {
-//			os << territory << " ";  // Assuming Territory has an overloaded operator<<
-//		}
-//	}
-//	else {
-//		os << "None";
-//	}
-//
-//	os << "\nOrders List: ";
-//	if (player.ordersList != nullptr) {
-//		os << *player.ordersList;  // Assuming OrdersList has an overloaded operator<<
-//	}
-//	else {
-//		os << "None";
-//	}
-//
-//	os << "\nHand: ";
-//	if (player.hand != nullptr) {
-//		os << *player.hand;  // Assuming Hand has an overloaded operator<<
-//	}
-//	else {
-//		os << "None";
-//	}
-//
-//	return os;
-//}
+std::ostream& operator<<(std::ostream& os, const Player& player)
+{
+	os << "Player Territories: ";
+	if (player.territories != nullptr) {
+		for (const Territory& territory : *player.territories) {
+			os << territory << " ";  // Assuming Territory has an overloaded operator<<
+		}
+	}
+	else {
+		os << "None";
+	}
+
+	os << "\nOrders List: ";
+	if (player.ordersList != nullptr) {
+		os << *player.ordersList;  // Assuming OrdersList has an overloaded operator<<
+	}
+	else {
+		os << "None";
+	}
+
+	os << "\nHand: ";
+	if (player.hand != nullptr) {
+		os << *player.hand;  // Assuming Hand has an overloaded operator<<
+	}
+	else {
+		os << "None";
+	}
+
+	return os;
+}

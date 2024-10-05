@@ -6,9 +6,9 @@ int main() {
 
 	std::vector<Territory>* territories = new std::vector<Territory>;
 
-	std::string s = "";
+	Continent* continent1 = new Continent("America");
 
-	Territory* territory1 = new Territory(s);
+	Territory* territory1 = new Territory("Montreal", continent1, "Liam", 10);
 
 	territories->push_back(*territory1);
 	
