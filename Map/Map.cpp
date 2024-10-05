@@ -1,57 +1,57 @@
 #include "Map.h"
 
-//DEFINING CLASS MEMBERS FOR MAP
+Map::Map() {}
 
-std::vector<Continent> Map::continents{};
+Map::Map(const Map& other)
+    : territories(other.territories), continents(other.continents) {}
 
-//CONSTRUCTORS 
-Map::Map() {
-    
-}
-
-Map::Map(std::vector<Continent> continents) {
-    Map::continents = continents;
-}
-
-Map::Map(const Map& other) {
-    this->continents = other.getContinents();
-}
-
-//OVERLOAD OPERATOR=
 Map& Map::operator=(const Map& other) {
-    if (this != &other) { // Self-assignment check
-        this->continents = other.getContinents();
-    }
+    if (this == &other) return *this; // Self-assignment check
+    territories = other.territories;
+    continents = other.continents;
     return *this;
 }
 
-//USER-DEFINED FUNCTIONS
-std::vector<Continent> Map::getContinents() const {
-    return Map::continents;
+Map::~Map() {}
+
+void Map::addTerritory(Territory* territory) {
+    territories.push_back(territory);
 }
 
-void Map::setContinents(std::vector<Continent> continents) {
-    Map::continents = continents;
+void Map::addContinent(Continent* continent) {
+    continents.push_back(continent);
+}
+std::vector<Continent*> Map::getContinents() const {
+    return continents;
+}
+
+std::vector<Territory*> Map::getTerritories() const {
+    return territories;
 }
 
 bool Map::validate() const {
     // Perform a BFS to check if the map is a connected graph
-    std::vector<Territory> territories;
+    if (territories.empty()) return false;
 
-    for (Continent c : continents) {
-        for (Territory t : c.getTerritories()) {
-            for (Territory neighbor : t.getNeighbors()) {
-                if (neighbor.getVisitedStatus()) {
-                    return false;
-                }
-                neighbor.setVisitedStatus(true);
-                territories.push_back(neighbor);
+    std::vector<bool> visited(territories.size(), false);
+    std::queue<Territory*> q;
+    q.push(territories[0]);
+    visited[0] = true;
+
+    while (!q.empty()) {
+        Territory* current = q.front();
+        q.pop();
+        for (Territory* adj : current->getAdjacentTerritories()) {
+            auto it = std::find(territories.begin(), territories.end(), adj);
+            if (it != territories.end() && !visited[it - territories.begin()]) {
+                visited[it - territories.begin()] = true;
+                q.push(adj);
             }
         }
     }
 
-    if (territories.empty()) {
-        return false;
+    for (bool isVisited : visited) {
+        if (!isVisited) return false;
     }
 
     // Additional checks for continents and territory ownership
@@ -59,14 +59,80 @@ bool Map::validate() const {
 }
 
 std::ostream& operator<<(std::ostream& os, const Map& map) {
-    os << "Map contains " << map.getContinents().size() << " continents.";
+    os << "Map contains " << map.territories.size() << " territories and " << map.continents.size() << " continents.";
     return os;
 }
 
 
+Territory::Territory(std::string name, Continent* continent, std::string owner, int armies)
+    : name(name), continent(continent), owner(owner), armies(armies) {}
 
+Territory::Territory(const Territory& other)
+    : name(other.name), continent(other.continent), owner(other.owner), armies(other.armies), adjacentTerritories(other.adjacentTerritories) {}
 
-//DEFINING CLASS MEMBERS FOR MAP_LOADER
+Territory& Territory::operator=(const Territory& other) {
+    if (this == &other) return *this; // Self-assignment check
+    name = other.name;
+    continent = other.continent;
+    owner = other.owner;
+    armies = other.armies;
+    adjacentTerritories = other.adjacentTerritories;
+    return *this;
+}
+
+Territory::~Territory() {}
+
+void Territory::addAdjacentTerritory(Territory* territory) {
+    adjacentTerritories.push_back(territory);
+}
+
+std::string Territory::getName() const {
+    return name;
+}
+
+Continent* Territory::getContinent() const {
+    return continent;
+}
+
+std::vector<Territory*> Territory::getAdjacentTerritories() const {
+    return adjacentTerritories;
+}
+
+std::ostream& operator<<(std::ostream& os, const Territory& territory) {
+    os << "Territory: " << territory.name << ", " << *territory.getContinent() << ", Owned by: " << territory.owner << ", Armies: " << territory.armies;
+    return os;
+}
+
+Continent::Continent(std::string name) : name(name) {}
+
+Continent::Continent(const Continent& other)
+    : name(other.name), territories(other.territories) {}
+
+Continent& Continent::operator=(const Continent& other) {
+    if (this == &other) return *this; // Self-assignment check
+    name = other.name;
+    territories = other.territories;
+    return *this;
+}
+
+Continent::~Continent() {}
+
+void Continent::addTerritory(Territory* territory) {
+    territories.push_back(territory);
+}
+
+std::string Continent::getName() const {
+    return name;
+}
+
+std::vector<Territory*> Continent::getTerritories() const {
+    return territories;
+}
+
+std::ostream& operator<<(std::ostream& os, const Continent& continent) {
+    os << "Continent: " << continent.name;
+    return os;
+}
 
 MapLoader::MapLoader(std::string filePath) : filePath(filePath) {}
 static inline std::string trim(const std::string& s) {
@@ -80,10 +146,12 @@ static inline std::string trim(const std::string& s) {
         end--;
     } while (std::distance(start, end) > 0 && std::isspace(*end));
 
+
     return std::string(start, end + 1);
 }
-
 Map* MapLoader::loadMap() {
+
+    std::cout << "Attempting to load map from: " << filePath << std::endl; // Print the file path
 
     std::ifstream file(filePath);
     if (!file.is_open()) {
@@ -95,9 +163,6 @@ Map* MapLoader::loadMap() {
     bool readingContinents = false;
     bool readingTerritories = false;
     std::vector<std::pair<std::string, std::vector<std::string>>> pendingAdjacencies;
-
-    std::vector<Continent> continents;
-
     while (getline(file, line)) {
         line = trim(line);
 
@@ -115,7 +180,6 @@ Map* MapLoader::loadMap() {
 
             readingContinents = false;
             readingTerritories = true;
-            map->setContinents(continents);
             continue;
         }
         if (readingContinents) {
@@ -125,7 +189,7 @@ Map* MapLoader::loadMap() {
             getline(ss, continentName, '=');
 
             Continent* continent = new Continent(continentName);
-            continents.push_back(*continent);
+            map->addContinent(continent);
         }
 
         if (readingTerritories) {
@@ -148,9 +212,9 @@ Map* MapLoader::loadMap() {
 
             // Check if the continent exists in the map
             Continent* continent = nullptr;
-            for (Continent c : map->getContinents()) {
-                if (c.getName() == continentName) {
-                    continent = &c;
+            for (Continent* c : map->getContinents()) {
+                if (c->getName() == continentName) {
+                    continent = c;
                     break;
                 }
             }
@@ -159,15 +223,53 @@ Map* MapLoader::loadMap() {
             }
 
             // Create the territory and add it to the map and the continent
-            Territory* territory = new Territory(territoryName);
-            continent->addTerritory(*territory);
+            Territory* territory = new Territory(territoryName, continent, "", 0); // Owner and armies set later
+            map->addTerritory(territory);
+            continent->addTerritory(territory);
             std::cout << *territory << std::endl;
 
             // Parse the adjacent territories and store for later linking
-            std::vector<Territory> neighbors;
+            std::vector<std::string> adjacentTerritories;
             while (getline(ss, temp, ',')) {
-                neighbors.push_back(*(new Territory(temp)));
+                adjacentTerritories.push_back(temp);
             }
+            pendingAdjacencies.push_back({ territoryName, adjacentTerritories });
+        }
+    }
+
+    // Now, process the pending adjacencies
+    for (const auto& pair : pendingAdjacencies) {
+        std::string territoryName = pair.first;
+        std::vector<std::string> adjacents = pair.second;
+
+        // Find the territory object by name
+        Territory* territory = nullptr;
+        for (Territory* t : map->getTerritories()) {
+            if (t->getName() == territoryName) {
+                territory = t;
+                break;
+            }
+        }
+
+        if (!territory) {
+            throw std::runtime_error("Territory " + territoryName + " not found in map.");
+        }
+
+        // Link adjacent territories
+        for (const std::string& adj : adjacents) {
+            Territory* adjacentTerritory = nullptr;
+            for (Territory* t : map->getTerritories()) {
+                if (t->getName() == adj) {
+                    adjacentTerritory = t;
+                    break;
+                }
+            }
+
+            if (!adjacentTerritory) {
+                throw std::runtime_error("Adjacent territory " + adj + " not found for territory " + territoryName);
+            }
+
+            territory->addAdjacentTerritory(adjacentTerritory);
         }
     }
 
@@ -175,11 +277,9 @@ Map* MapLoader::loadMap() {
     return map;
 }
 
-std::ostream& operator<<(std::ostream& os, const MapLoader& mapLoader) {
-    os << "MapLoader loading file: " << mapLoader.getFilePath();
-    return os;
-}
 
-std::string MapLoader::getFilePath() const {
-    return this->filePath;
+
+std::ostream& operator<<(std::ostream& os, const MapLoader& mapLoader) {
+    os << "MapLoader loading file: " << mapLoader.filePath;
+    return os;
 }

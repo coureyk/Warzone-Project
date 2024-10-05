@@ -1,8 +1,6 @@
-#include "Continent.h"
 #include "Map.h"
-#include "Territory.h"
-#include "MapDriver.h"
+#include "MapDriver.cpp"
 
 int main() {
-    testLoadMaps2();
+    testLoadMaps();
 }

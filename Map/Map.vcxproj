@@ -127,19 +127,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Continent.h" />
     <ClInclude Include="Map.h" />
-    <ClInclude Include="MapDriver.h" />
-    <ClInclude Include="Territory.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Continent.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="MapDriver.cpp" />
-    <ClCompile Include="Territory.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="USA.map" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
