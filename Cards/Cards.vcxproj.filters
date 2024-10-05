@@ -15,24 +15,12 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Order.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="OrdersList.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="OrdersDriver.h">
+    <ClInclude Include="Card.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="OrdersDriver.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="OrdersList.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Order.cpp">
+    <ClCompile Include="Card.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
