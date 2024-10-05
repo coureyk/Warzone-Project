@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Order.h" />
+    <ClInclude Include="OrdersDriver.h" />
     <ClInclude Include="OrdersList.h" />
   </ItemGroup>
   <ItemGroup>
