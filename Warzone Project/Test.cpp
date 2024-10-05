@@ -1,5 +1,8 @@
-#include "OrdersDriver.h"
+#include "Cards.h"
+#include "CardsDriver.cpp"
+
 
 int main() {
-	testOrdersLists();
+    std::cout << "TESTING CARDS METHODS\n\n"
+    testCards();
 }
