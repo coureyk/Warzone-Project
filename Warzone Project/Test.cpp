@@ -1,6 +1,9 @@
 #include "Cards.h"
 #include "CardsDriver.cpp"
+
 #include "GameEngine.h"
+
+#include "Player.h"
 
 
 int main() {
@@ -9,6 +12,9 @@ int main() {
 
     std::cout << "\n\n\nTESTING GAME_ENGINE METHODS";
     testGameStates();
+
+    std::cout << "\n\n\nTESTING PLAYER METHODS";
+    testPlayers();
 
 
 }
