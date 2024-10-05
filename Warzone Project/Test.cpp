@@ -5,9 +5,13 @@
 
 #include "Player.h"
 
+#include "mapDriver.cpp"
+
 
 int main() {
-    std::cout << "TESTING CARDS METHODS\n\n\n";
+    std::cout << "TESTING ORDER METHODS\n\n\n"
+
+    std::cout << "\n\n\nTESTING CARDS METHODS\n\n\n";
     testCards();
 
     std::cout << "\n\n\nTESTING GAME_ENGINE METHODS";
@@ -16,5 +20,6 @@ int main() {
     std::cout << "\n\n\nTESTING PLAYER METHODS";
     testPlayers();
 
-
+    std::cout << "\n\n\nTESTING MAP METHODS";
+    testLoadMaps();
 }
