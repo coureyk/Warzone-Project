@@ -5,6 +5,8 @@ VisualStudioVersion = 17.11.35312.102
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Warzone Project", "Warzone Project\Warzone Project.vcxproj", "{772A186C-9A34-4BB6-AEE7-F545213C7274}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Cards", "Cards\Cards.vcxproj", "{252C14EE-AD6C-4275-8CD7-191D137133C2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +23,14 @@ Global
 		{772A186C-9A34-4BB6-AEE7-F545213C7274}.Release|x64.Build.0 = Release|x64
 		{772A186C-9A34-4BB6-AEE7-F545213C7274}.Release|x86.ActiveCfg = Release|Win32
 		{772A186C-9A34-4BB6-AEE7-F545213C7274}.Release|x86.Build.0 = Release|Win32
+		{252C14EE-AD6C-4275-8CD7-191D137133C2}.Debug|x64.ActiveCfg = Debug|x64
+		{252C14EE-AD6C-4275-8CD7-191D137133C2}.Debug|x64.Build.0 = Debug|x64
+		{252C14EE-AD6C-4275-8CD7-191D137133C2}.Debug|x86.ActiveCfg = Debug|Win32
+		{252C14EE-AD6C-4275-8CD7-191D137133C2}.Debug|x86.Build.0 = Debug|Win32
+		{252C14EE-AD6C-4275-8CD7-191D137133C2}.Release|x64.ActiveCfg = Release|x64
+		{252C14EE-AD6C-4275-8CD7-191D137133C2}.Release|x64.Build.0 = Release|x64
+		{252C14EE-AD6C-4275-8CD7-191D137133C2}.Release|x86.ActiveCfg = Release|Win32
+		{252C14EE-AD6C-4275-8CD7-191D137133C2}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
