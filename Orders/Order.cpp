@@ -83,7 +83,7 @@ Deploy::Deploy(int armyUnits, std::string targetTerritory) {
     this->setTargetTerritory(targetTerritory);
 }
 
-Deploy::Deploy(Deploy& other)
+Deploy::Deploy(const Deploy& other)
 {
     this->setExecutionStatus(other.getExecutionStatus());
     this->setArmyUnits(other.getArmyUnits());
@@ -135,7 +135,7 @@ Advance::Advance(int armyUnits, std::string sourceTerritory, std::string targetT
     this->setTargetTerritory(targetTerritory);
 }
 
-Advance::Advance(Advance& other)
+Advance::Advance(const Advance& other)
 {
     this->setExecutionStatus(other.getExecutionStatus());
     this->setArmyUnits(other.getArmyUnits());
@@ -186,7 +186,7 @@ Bomb::Bomb(std::string targetTerritory) {
     this->setTargetTerritory(targetTerritory);
 }
 
-Bomb::Bomb(Bomb& other)
+Bomb::Bomb(const Bomb& other)
 {
     this->setExecutionStatus(other.getExecutionStatus());
     this->setTargetTerritory(other.getTargetTerritory());
@@ -232,7 +232,7 @@ Blockade::Blockade(std::string targetTerritory) {
     this->setTargetTerritory(targetTerritory);
 }
 
-Blockade::Blockade(Blockade& other)
+Blockade::Blockade(const Blockade& other)
 {
     this->setExecutionStatus(other.getExecutionStatus());
     this->setTargetTerritory(other.getTargetTerritory());
@@ -280,7 +280,7 @@ Airlift::Airlift(int armyUnits, std::string sourceTerritory, std::string targetT
     this->setTargetTerritory(targetTerritory);
 }
 
-Airlift::Airlift(Airlift& other)
+Airlift::Airlift(const Airlift& other)
 {
     this->setExecutionStatus(other.getExecutionStatus());
     this->setArmyUnits(other.getArmyUnits());
@@ -331,7 +331,7 @@ Negotiate::Negotiate(std::string sourcePlayer, std::string targetPlayer) {
     this->setTargetPlayer(targetPlayer);
 }
 
-Negotiate::Negotiate(Negotiate& other)
+Negotiate::Negotiate(const Negotiate& other)
 {
     this->setExecutionStatus(other.getExecutionStatus());
     this->setSourcePlayer(other.getSourcePlayer());

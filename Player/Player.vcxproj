@@ -21,10 +21,9 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{0b6edb27-3929-44d3-8cfd-b77e45b71915}</ProjectGuid>
-    <RootNamespace>Players</RootNamespace>
+    <ProjectGuid>{1523067f-e445-4d37-90c3-f651e241665a}</ProjectGuid>
+    <RootNamespace>Player</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>Player</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -41,7 +40,7 @@
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
@@ -105,7 +104,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Cards;$(SolutionDir)Orders;$(SolutionDir)Map</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Cards;$(SolutionDir)Map;$(SolutionDir)Orders</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -129,6 +128,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Player.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Player.cpp" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\Cards\Cards.vcxproj">
       <Project>{654972cc-dc7b-4be8-8789-1e21f6132b34}</Project>
     </ProjectReference>
@@ -138,12 +143,6 @@
     <ProjectReference Include="..\Orders\Orders.vcxproj">
       <Project>{4177c628-d3a8-45f6-9f41-c4ddf51b262c}</Project>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Player.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Player.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

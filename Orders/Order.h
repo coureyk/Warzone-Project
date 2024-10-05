@@ -48,7 +48,7 @@ class Deploy : public Order {
 public:
     //Constructors
     Deploy(int armyUnits, std::string targetTerritory);
-    Deploy(Deploy& other);
+    Deploy(const Deploy& other);
 
     //Overloading operator "="
     Deploy& operator=(const Deploy& other);
@@ -63,7 +63,7 @@ class Advance : public Order {
 public:
     //Constructors
     Advance(int armyUnits, std::string sourceTerritory, std::string targetTerritory);
-    Advance(Advance& other);
+    Advance(const Advance& other);
 
     //Overloading operator "="
     Advance& operator=(const Advance& other);
@@ -78,7 +78,7 @@ class Bomb : public Order {
 public:
     //Constructors
     Bomb(std::string targetTerritory);
-    Bomb(Bomb& other);
+    Bomb(const Bomb& other);
 
     //Overloading operator "="
     Bomb& operator=(const Bomb& other);
@@ -93,7 +93,7 @@ class Blockade : public Order {
 public:
     //Constructors
     Blockade(std::string targetTerritory);
-    Blockade(Blockade& other);
+    Blockade(const Blockade& other);
 
     //Overloading operator "="
     Blockade& operator=(const Blockade& other);
@@ -108,7 +108,7 @@ class Airlift : public Order {
 public:
     //Constructors
     Airlift(int armyUnits, std::string sourceTerritory, std::string targetTerritory);
-    Airlift(Airlift& other);
+    Airlift(const Airlift& other);
 
     //Overloading operator "="
     Airlift& operator=(const Airlift& other);
@@ -123,7 +123,7 @@ class Negotiate : public Order {
 public:
     //Constructors
     Negotiate(std::string sourcePlayer, std::string targetPlayer);
-    Negotiate(Negotiate& other);
+    Negotiate(const Negotiate& other);
 
     //Overloading operator "="
     Negotiate& operator=(const Negotiate& other);

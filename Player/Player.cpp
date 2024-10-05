@@ -1,4 +1,5 @@
 #include "Player.h"
+#include "Order.h"
 #include <iostream>
 
 Player::Player(const std::vector<Territory>& territories, const OrdersList& ordersList, const Hand& hand) {
@@ -104,23 +105,23 @@ void Player::issueOrder() {
 	break;
 	case 3:
 	{
-		Bomb* bomb = new Bomb("");
-		ordersList->addLast(bomb);
-		std::cout << "Bomb added";
+		//Bomb* bomb = new Bomb(""); ALL CASES THAT ARE COMMENTED OUT CAUSE ERRORS
+		//ordersList->addLast(bomb);
+		//std::cout << "Bomb added";
 	}
 	break;
 	case 4:
 	{
-		Blockade* blockade = new Blockade("");
-		ordersList->addLast(blockade);
-		std::cout << "Blockade added";
+		//Blockade* blockade = new Blockade("");
+		//ordersList->addLast(blockade);
+		//std::cout << "Blockade added";
 	}
 	break;
 	case 5:
 	{
-		Airlift* airlift = new Airlift(0, "", "");
-		ordersList->addLast(airlift);
-		std::cout << "Airlift added";
+		//Airlift* airlift = new Airlift(0, "", "");
+		//ordersList->addLast(airlift);
+		//std::cout << "Airlift added";
 	}
 	break;
 	case 6:
@@ -133,8 +134,6 @@ void Player::issueOrder() {
 	default:
 		std::cout << "Not a valid input.";
 	}
-
-
 }
 
 Player& Player::operator=(const Player& otherPlayer) {
@@ -191,6 +190,7 @@ std::ostream& operator<<(std::ostream& os, const Player& player)
 		os << "None";
 	}
 
+	/*
 	os << "\nHand: ";
 	if (player.hand != nullptr) {
 		os << *player.hand;  // Assuming Hand has an overloaded operator<<
@@ -198,6 +198,7 @@ std::ostream& operator<<(std::ostream& os, const Player& player)
 	else {
 		os << "None";
 	}
+	*/
 
 	return os;
 }
@@ -211,7 +212,7 @@ void testPlayers() {
 
 	territories->push_back(*territory1);
 
-	Card* card1 = new Card(BOMB);
+	Card* card1 = new Card(Bomb);
 
 	Hand* hand1 = new Hand;
 

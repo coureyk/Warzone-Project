@@ -140,8 +140,8 @@
     <ProjectReference Include="..\Orders\Orders.vcxproj">
       <Project>{4177c628-d3a8-45f6-9f41-c4ddf51b262c}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\Players\Players.vcxproj">
-      <Project>{0b6edb27-3929-44d3-8cfd-b77e45b71915}</Project>
+    <ProjectReference Include="..\Player\Player.vcxproj">
+      <Project>{1523067f-e445-4d37-90c3-f651e241665a}</Project>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
