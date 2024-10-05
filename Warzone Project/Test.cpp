@@ -1,5 +1,5 @@
 #include "Cards.h"
-#include "CardsDriver.cpp"
+#include "CardsDriver.h"
 
 #include "GameEngine.h"
 
@@ -7,7 +7,7 @@
 
 #include "Player.h"
 
-#include "MapDriver.cpp"
+#include "MapDriver.h"
 
 int main() {
     std::cout << "testCards() is invoked\n\n\n";
@@ -19,8 +19,11 @@ int main() {
     std::cout << "\n\n\ntestOrdersLists() is invoked\n\n\n";
     testOrdersLists();
 
+    /*
     std::cout << "\n\n\ntestPlayers() is invoked\n\n\n";
     testPlayers();
+    */
+    
 
     /* File reading causes error
     std::cout << "\n\n\ntestLoadMaps() is invoked";

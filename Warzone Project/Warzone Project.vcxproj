@@ -24,6 +24,7 @@
     <ProjectGuid>{772a186c-9a34-4bb6-aee7-f545213c7274}</ProjectGuid>
     <RootNamespace>WarzoneProject</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>Warzone_Project</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -104,7 +105,8 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Cards; $(SolutionDir)Map;$(SolutionDir)Orders;$(SolutionDir)Player;$(SolutionDir)GameEngine</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>
+      </AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -129,24 +131,27 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Cards.cpp" />
+    <ClCompile Include="CardsDriver.cpp" />
+    <ClCompile Include="GameEngine.cpp" />
+    <ClCompile Include="Map.cpp" />
+    <ClCompile Include="MapDriver.cpp" />
+    <ClCompile Include="Order.cpp" />
+    <ClCompile Include="OrdersDriver.cpp" />
+    <ClCompile Include="OrdersList.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="Test.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Cards\Cards.vcxproj">
-      <Project>{1f50acb5-c40d-4e47-a6fd-28c32f105728}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\GameEngine\GameEngine.vcxproj">
-      <Project>{b4eac232-4c0d-44ea-a2a4-b7b8a43ebc1e}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\Map\Map.vcxproj">
-      <Project>{b589125d-81b0-4f93-9617-0686f007acca}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\Orders\Orders.vcxproj">
-      <Project>{84964690-0a39-4314-8eb1-c580eabdcab9}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\Player\Player.vcxproj">
-      <Project>{6c3d10ac-f62e-4180-89c8-5ba72d9e78c9}</Project>
-    </ProjectReference>
+    <ClInclude Include="Cards.h" />
+    <ClInclude Include="CardsDriver.h" />
+    <ClInclude Include="GameEngine.h" />
+    <ClInclude Include="Map.h" />
+    <ClInclude Include="MapDriver.h" />
+    <ClInclude Include="Order.h" />
+    <ClInclude Include="OrdersDriver.h" />
+    <ClInclude Include="OrdersList.h" />
+    <ClInclude Include="Player.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="USA.map" />
