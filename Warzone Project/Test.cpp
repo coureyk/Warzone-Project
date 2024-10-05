@@ -14,7 +14,13 @@ void waitForEnter() {
     std::cin.get();     // Waits for the user to press Enter
 }
 int main() {
+    //File reading causes error
+    std::cout << "\n\n\ntestLoadMaps() is invoked\n\n\n";
+    waitForEnter();
+    testLoadMaps();
+
     std::cout << "\n\n\ntestPlayers() is invoked\n\n\n";
+    waitForEnter();
     testPlayers();
 
 
@@ -29,10 +35,4 @@ int main() {
     std::cout << "\n\n\ntestGameStates() is invoked\n\n\n";
     waitForEnter();
     testGameStates();
-
-    //File reading causes error
-    std::cout << "\n\n\ntestLoadMaps() is invoked";
-    waitForEnter();
-    testLoadMaps();
-
 }
