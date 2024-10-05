@@ -104,7 +104,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)GameEngine</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Cards;$(SolutionDir)GameEngine;$(SolutionDir)Map;$(SolutionDir)Orders;$(SolutionDir)Player</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -132,8 +132,17 @@
     <ClCompile Include="Test.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Cards\Cards.vcxproj">
+      <Project>{394df4af-c038-4488-bd25-51e068122b1e}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\GameEngine\GameEngine.vcxproj">
       <Project>{34bd8c1d-1f8a-4595-8864-101cfc4f8967}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\Map\Map.vcxproj">
+      <Project>{f4dab63d-e7fd-4264-9cc4-75a58eca89f0}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\Orders\Orders.vcxproj">
+      <Project>{4177c628-d3a8-45f6-9f41-c4ddf51b262c}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
