@@ -19,8 +19,8 @@ public:
     //Default Constructor
     Order();
 
-    virtual bool validate() = 0;
-    virtual void execute() = 0;
+    virtual bool validate() = 0; //To be defined by subclasses in Part 2 (according to Prof. Joey Paquet)
+    virtual void execute() = 0; //To be defined by subclasses in Part 2 (according to Prof. Joey Paquet)
     
     //These must be constant functions so they may be invoked by a const Deploy, Advance, ... object
     virtual std::string summary() const = 0; //This function returns a string representation of the Order that invokes it, and is meant to act as a helper function for overloaded operator "<<".
