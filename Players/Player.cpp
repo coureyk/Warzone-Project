@@ -104,7 +104,7 @@ void Player::issueOrder() {
 	break;
 	case 3:
 	{
-		Bomb* bomb = new Bomb(0);
+		Bomb* bomb = new Bomb("");
 		ordersList->addLast(bomb);
 		std::cout << "Bomb added";
 	}

@@ -3,13 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35312.102
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Warzone Project", "Warzone Project\Warzone Project.vcxproj", "{772A186C-9A34-4BB6-AEE7-F545213C7274}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Orders", "Orders\Orders.vcxproj", "{4177C628-D3A8-45F6-9F41-C4DDF51B262C}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Map", "Map\Map.vcxproj", "{8FBB4203-1F54-4027-A377-0048506CD994}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Players", "Players\Players.vcxproj", "{0B6EDB27-3929-44D3-8CFD-B77E45B71915}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Player", "Players\Players.vcxproj", "{0B6EDB27-3929-44D3-8CFD-B77E45B71915}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Cards", "Cards\Cards.vcxproj", "{654972CC-DC7B-4BE8-8789-1E21F6132B34}"
 EndProject
@@ -23,14 +21,6 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{772A186C-9A34-4BB6-AEE7-F545213C7274}.Debug|x64.ActiveCfg = Debug|x64
-		{772A186C-9A34-4BB6-AEE7-F545213C7274}.Debug|x64.Build.0 = Debug|x64
-		{772A186C-9A34-4BB6-AEE7-F545213C7274}.Debug|x86.ActiveCfg = Debug|Win32
-		{772A186C-9A34-4BB6-AEE7-F545213C7274}.Debug|x86.Build.0 = Debug|Win32
-		{772A186C-9A34-4BB6-AEE7-F545213C7274}.Release|x64.ActiveCfg = Release|x64
-		{772A186C-9A34-4BB6-AEE7-F545213C7274}.Release|x64.Build.0 = Release|x64
-		{772A186C-9A34-4BB6-AEE7-F545213C7274}.Release|x86.ActiveCfg = Release|Win32
-		{772A186C-9A34-4BB6-AEE7-F545213C7274}.Release|x86.Build.0 = Release|Win32
 		{4177C628-D3A8-45F6-9F41-C4DDF51B262C}.Debug|x64.ActiveCfg = Debug|x64
 		{4177C628-D3A8-45F6-9F41-C4DDF51B262C}.Debug|x64.Build.0 = Debug|x64
 		{4177C628-D3A8-45F6-9F41-C4DDF51B262C}.Debug|x86.ActiveCfg = Debug|Win32
