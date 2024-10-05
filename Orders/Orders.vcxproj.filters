@@ -15,24 +15,24 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Deploy.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Order.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="OrdersList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="OrdersDriver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Deploy.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="OrdersDriver.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="OrdersList.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Order.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

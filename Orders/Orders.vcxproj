@@ -19,12 +19,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Deploy.h" />
     <ClInclude Include="Order.h" />
+    <ClInclude Include="OrdersDriver.h" />
     <ClInclude Include="OrdersList.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Deploy.cpp" />
+    <ClCompile Include="Order.cpp" />
     <ClCompile Include="OrdersDriver.cpp" />
     <ClCompile Include="OrdersList.cpp" />
   </ItemGroup>

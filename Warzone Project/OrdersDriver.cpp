@@ -32,4 +32,3 @@ void testOrdersLists() {
 
     list.getContents(); //demonstrates overloaded operator<<
 }
-
