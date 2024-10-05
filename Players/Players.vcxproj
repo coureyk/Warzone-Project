@@ -105,6 +105,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(SolutionDir)Cards;$(SolutionDir)Orders;$(SolutionDir)Map</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -132,6 +133,17 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Player.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Cards\Cards.vcxproj">
+      <Project>{654972cc-dc7b-4be8-8789-1e21f6132b34}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\Map\Map.vcxproj">
+      <Project>{8fbb4203-1f54-4027-a377-0048506cd994}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\Orders\Orders.vcxproj">
+      <Project>{4177c628-d3a8-45f6-9f41-c4ddf51b262c}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

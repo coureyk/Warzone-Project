@@ -1,3 +1,5 @@
+#include "OrdersDriver.h";
+
 #include "Cards.h"
 #include "CardsDriver.cpp"
 
@@ -9,7 +11,8 @@
 
 
 int main() {
-    std::cout << "TESTING ORDER METHODS\n\n\n"
+    std::cout << "TESTING ORDER METHODS\n\n\n";
+    testOrdersLists();
 
     std::cout << "\n\n\nTESTING CARDS METHODS\n\n\n";
     testCards();
