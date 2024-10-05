@@ -11,6 +11,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GameEngine", "GameEngine\Ga
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Map", "Map\Map.vcxproj", "{B589125D-81B0-4F93-9617-0686F007ACCA}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Orders", "Orders\Orders.vcxproj", "{84964690-0A39-4314-8EB1-C580EABDCAB9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -51,6 +53,14 @@ Global
 		{B589125D-81B0-4F93-9617-0686F007ACCA}.Release|x64.Build.0 = Release|x64
 		{B589125D-81B0-4F93-9617-0686F007ACCA}.Release|x86.ActiveCfg = Release|Win32
 		{B589125D-81B0-4F93-9617-0686F007ACCA}.Release|x86.Build.0 = Release|Win32
+		{84964690-0A39-4314-8EB1-C580EABDCAB9}.Debug|x64.ActiveCfg = Debug|x64
+		{84964690-0A39-4314-8EB1-C580EABDCAB9}.Debug|x64.Build.0 = Debug|x64
+		{84964690-0A39-4314-8EB1-C580EABDCAB9}.Debug|x86.ActiveCfg = Debug|Win32
+		{84964690-0A39-4314-8EB1-C580EABDCAB9}.Debug|x86.Build.0 = Debug|Win32
+		{84964690-0A39-4314-8EB1-C580EABDCAB9}.Release|x64.ActiveCfg = Release|x64
+		{84964690-0A39-4314-8EB1-C580EABDCAB9}.Release|x64.Build.0 = Release|x64
+		{84964690-0A39-4314-8EB1-C580EABDCAB9}.Release|x86.ActiveCfg = Release|Win32
+		{84964690-0A39-4314-8EB1-C580EABDCAB9}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
