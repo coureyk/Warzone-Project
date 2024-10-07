@@ -1,7 +1,6 @@
 ﻿#include "Player.h"
 #include <iostream>
 
-
 Player::Player(const std::vector<Territory>&territories,const OrdersList& ordersList,const Hand& hand) {
 
 	this->territories = new std::vector<Territory>(territories);
@@ -193,33 +192,59 @@ void Player::toString() {
 }
 
 // TODO: When Kevin adds his operator<< implementations I will be able to finish this.
-//std::ostream& operator<<(std::ostream& os, const Player& player)
-//{
-//	os << "Player Territories: ";
-//	if (player.territories != nullptr) {
-//		for (const Territory& territory : *player.territories) {
-//			os << territory << " ";  // Assuming Territory has an overloaded operator<<
-//		}
-//	}
-//	else {
-//		os << "None";
-//	}
-//
-//	os << "\nOrders List: ";
-//	if (player.ordersList != nullptr) {
-//		os << *player.ordersList;  // Assuming OrdersList has an overloaded operator<<
-//	}
-//	else {
-//		os << "None";
-//	}
-//
-//	os << "\nHand: ";
-//	if (player.hand != nullptr) {
-//		os << *player.hand;  // Assuming Hand has an overloaded operator<<
-//	}
-//	else {
-//		os << "None";
-//	}
-//
-//	return os;
-//}
+std::ostream& operator<<(std::ostream& os, const Player& player)
+{
+	os << "Player Territories: ";
+	if (player.territories != nullptr) {
+		for (const Territory& territory : *player.territories) {
+			os << territory << " ";  // Assuming Territory has an overloaded operator<<
+		}
+	}
+	else {
+		os << "None";
+	}
+
+	os << "\nOrders List: ";
+	if (player.ordersList != nullptr) {
+		os << *player.ordersList;  // Assuming OrdersList has an overloaded operator<<
+	}
+	else {
+		os << "None";
+	}
+
+	os << "\nHand: ";
+	if (player.hand != nullptr) {
+		os << *player.hand;  // Assuming Hand has an overloaded operator<<
+	}
+	else {
+		os << "None";
+	}
+
+	return os;
+}
+
+void testPlayers() {
+	std::vector<Territory>* territories = new std::vector<Territory>;
+
+	Continent* continent1 = new Continent("America");
+
+	Territory* territory1 = new Territory("Montreal", continent1, "Liam", 10);
+
+	territories->push_back(*territory1);
+
+	Card* card1 = new Card(BOMB);
+
+	Hand* hand1 = new Hand;
+
+	hand1->addCard(card1);
+
+	OrdersList* list = new OrdersList;
+
+	Deploy* order1 = new Deploy(1, std::string("Alaska"));
+
+	list->addLast(order1);
+
+	Player* player1 = new Player(*territories, *list, *hand1);
+
+	player1->issueOrder();
+}
