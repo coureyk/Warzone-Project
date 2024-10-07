@@ -32,3 +32,10 @@ void Territory::setNeighbors(std::vector<Territory> neighbors) {
 void Territory::setArmies(int armies) {
     this->armies = armies;
 }
+
+bool Territory::operator==(Territory& otherTerritory) {
+    if (name == otherTerritory.getName())
+        return true;
+    else
+        return false;
+}

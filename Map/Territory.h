@@ -18,5 +18,6 @@ public:
     void setName(std::string name);
     void setNeighbors(std::vector<Territory> neighbors);
     void setArmies(int armies);
+    bool operator==(Territory& otherTerritory);
 };
 #endif
